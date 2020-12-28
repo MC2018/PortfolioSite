@@ -16,6 +16,10 @@ $footer-padding: 2.5em;
     color: $text-color;
 }
 
+h1 {
+    font-family: "Times New Roman";
+}
+
 body {
     /* Footer working on bottom */
     min-height: 100vh;
@@ -107,7 +111,7 @@ body::-webkit-scrollbar {
     display: none;
 }
 
-@media (max-aspect-ratio: 99/100) and (max-width: 1000px) {
+@media (max-aspect-ratio: 999/1000) and (max-width: 999px) {
     a {
         padding: 1.5vw;
         font-size: 5vw;
@@ -121,7 +125,7 @@ body::-webkit-scrollbar {
             background-color: $secondary-background-color;
             position: fixed;
             width: 100%;
-            height: 90%;
+            height: 100%;
             top: 10vh;
             left: 0px;
         }
@@ -129,7 +133,7 @@ body::-webkit-scrollbar {
         nav {
             visibility: hidden;
             opacity: 0;
-            transition: all 0.5s linear;
+            transition: all 0.2s linear;
             text-align: center;
             margin: auto;
             clear: both;
@@ -162,6 +166,10 @@ body::-webkit-scrollbar {
         font-size: 12vw;
     }
 
+    h2 {
+        font-size: 5vw;
+    }
+
     .nav-button {
         visibility: visible;
         padding-left: 3vw;
@@ -179,5 +187,25 @@ body::-webkit-scrollbar {
 
     .mobile-only {
         display: block;
+    }
+}
+
+@media (min-aspect-ratio: 1/1), (min-width: 1000px) {
+    @media (max-width: 2299px) {
+        body {
+            font-size: 16px;
+        }
+    }
+    
+    @media (min-width: 2300px) and (max-width: 3199px) {
+        body {
+            font-size: 24px;
+        }
+    }
+    
+    @media (min-width: 3200px) {
+        body {
+            font-size: 32px;
+        }
     }
 }

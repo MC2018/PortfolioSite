@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="scripts/utils.js"></script>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/dotenv@8.2.0/lib/main.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                initialize();
+            });
+        </script>
+        <link rel="stylesheet" href="styles/style.css">
+        <style type="text/css">
+            textarea, form, input, button {
+                resize: none;
+                -webkit-border-radius: 0.5em;
+                -moz-border-radius: 0.5em;
+                border-radius: 0.5em;
+            }
+
+            p > input, p > textarea {
+                width: 600px;
+            }
+
+            form {
+                display: table;
+            }
+
+            table input, table textarea {
+                width: 300px;
+            }
+
+            tr {
+                border: 5em;
+            }
+
+
+
+            h2 {
+                width: 70%;
+            }
+
+            @media (max-aspect-ratio: 999/1000) and (max-width: 1000px) {
+                .github, .linkedin {
+                    width: 3em;
+                }
+
+                h2 {
+                    width: 90%;
+                }
+            }
+        </style>
+        <title>Contact</title>
+    </head>
+    <body>
+        <h1>Contact</h1>
+        <form style="margin-left: auto; margin-right: auto;" action="/contact.html">
+            <table>
+                <tr>
+                    <th><label>Name:</label></th>
+                    <th><input type="text"></th>
+                </tr>
+                <tr>
+                    <th><label>Email:</label></th>
+                    <th><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></th>
+                </tr>
+                <tr>
+                    <th><label>Message:</label></th>
+                    <th><textarea style="height: 250px"></textarea></th>
+                </tr>
+            </table>
+            <br>
+            <input style="padding: 0.3em; font-size: 2em; display: block; margin-left: auto; margin-right: auto;" type="submit" value="Submit">
+        </form>
+    </body>
+</html>

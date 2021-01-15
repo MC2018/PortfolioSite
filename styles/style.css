@@ -27,7 +27,7 @@ a {
   padding: 0.6em;
 }
 
-nav li, nav a {
+nav li, nav a, button {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 1.3em;
@@ -44,6 +44,15 @@ h1 {
 h2 {
   text-align: center;
   font-size: 2.5em;
+}
+
+label, input {
+  font-size: 1.5em;
+}
+
+input, textarea, button {
+  background-color: #412a2a;
+  border: 0;
 }
 
 header {
@@ -182,7 +191,13 @@ body::-webkit-scrollbar {
   }
 }
 
-@media (min-aspect-ratio: 1 / 1) and (max-width: 2299px), (min-width: 1000px) and (max-width: 2299px) {
+@media (min-aspect-ratio: 1 / 1) and (max-width: 1399px), (min-width: 1000px) and (max-width: 1399px) {
+  body {
+    font-size: 12px;
+  }
+}
+
+@media (min-aspect-ratio: 1 / 1) and (min-width: 1400px) and (max-width: 2299px), (min-width: 1000px) and (min-width: 1400px) and (max-width: 2299px) {
   body {
     font-size: 16px;
   }

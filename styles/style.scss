@@ -1,6 +1,3 @@
-/* Navigation font */
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-
 $text-color: #cf9e9e;
 $hover-color: #8d6b6b;
 
@@ -16,7 +13,7 @@ $footer-padding: 2.5em;
     color: $text-color;
 }
 
-h1 {
+h1, textarea {
     font-family: "Times New Roman";
 }
 
@@ -37,7 +34,7 @@ a {
     padding: 0.6em;
 }
 
-nav li, nav a, button {
+nav li, nav a, button, textarea {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-size: 1.3em;
@@ -56,7 +53,7 @@ h2 {
     font-size: 2.5em;
 }
 
-label, input {
+label, input, textarea {
     font-size: 1.5em;
 }
 
@@ -99,8 +96,14 @@ nav a:hover {
     fill: $text-color;
 }
 
-.svg-icon:hover {
+input[type=submit] {
+    transition: color 0.3s ease 0.05s;
+}
+
+.svg-icon:hover, input[type=submit]:hover {
     fill: $hover-color;
+    color: $hover-color;
+    cursor: pointer;
 }
 
 footer {

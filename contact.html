@@ -1,5 +1,6 @@
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="scripts/utils.js"></script>
         <script src="https://smtpjs.com/v3/smtp.js"></script>
@@ -18,35 +19,23 @@
                 border-radius: 0.5em;
             }
 
-            p > input, p > textarea {
-                width: 600px;
+            input, textarea {
+                width: 30em;
+                padding: 0.5em;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
             }
 
-            form {
-                display: table;
+            input[type=submit] {
+                width: 22.5em;
+                font-size: 2em
             }
 
-            table input, table textarea {
-                width: 300px;
-            }
-
-            tr {
-                border: 5em;
-            }
-
-
-
-            h2 {
-                width: 70%;
-            }
-
-            @media (max-aspect-ratio: 999/1000) and (max-width: 1000px) {
-                .github, .linkedin {
-                    width: 3em;
-                }
-
-                h2 {
-                    width: 90%;
+            @media (max-aspect-ratio: 999/1000) and (max-width: 999px) {
+                input, textarea, input[type=submit] {
+                    font-size: 1em;
+                    width: 95%;
                 }
             }
         </style>
@@ -54,23 +43,15 @@
     </head>
     <body>
         <h1>Contact</h1>
+        <br>
         <form style="margin-left: auto; margin-right: auto;" action="/contact.html">
-            <table>
-                <tr>
-                    <th><label>Name:</label></th>
-                    <th><input type="text"></th>
-                </tr>
-                <tr>
-                    <th><label>Email:</label></th>
-                    <th><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"></th>
-                </tr>
-                <tr>
-                    <th><label>Message:</label></th>
-                    <th><textarea style="height: 250px"></textarea></th>
-                </tr>
-            </table>
+            <input type="text" placeholder="Full name">
             <br>
-            <input style="padding: 0.3em; font-size: 2em; display: block; margin-left: auto; margin-right: auto;" type="submit" value="Submit">
+            <input type="email" placeholder="Email address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+            <br>
+            <textarea type="text" placeholder="Message" style="height: 10em"></textarea>
+            <br>
+            <input style="display: block;" type="submit" value="Submit">
         </form>
     </body>
 </html>

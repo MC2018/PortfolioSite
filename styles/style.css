@@ -3,26 +3,20 @@
           box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: #cf9e9e;
+  color: #d8c9c9;
 }
 
-h1, textarea {
-  font-family: "Times New Roman";
+html {
+  /* Disable scrollbar */
+  scrollbar-width: none;
 }
 
 body {
   /* Footer working on bottom */
   min-height: 100vh;
   padding-bottom: 2.5em;
-  /* Disable scrollbar */
-  -ms-overflow-style: none;
-  scrollbar-width: none;
   background-color: #523535;
   position: relative;
-}
-
-a {
-  padding: 0.6em;
 }
 
 nav li, nav a, button, textarea {
@@ -48,6 +42,33 @@ label, input, textarea {
   font-size: 1.5em;
 }
 
+.language-box {
+  background-color: #d8c9c9;
+  color: #412a2a;
+  font-size: 0.75em;
+  padding: 0.1em;
+  display: inline-block;
+  border-radius: 1em;
+  min-width: 2em;
+  text-align: center;
+}
+
+.info-box {
+  background-color: #472f2f;
+  -webkit-transition: background-color 0.3s ease 0.05s;
+  transition: background-color 0.3s ease 0.05s;
+  padding: 1.5em;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2em;
+  border-radius: 2em;
+}
+
+.info-box:hover {
+  background-color: #412a2a;
+}
+
 input, textarea, button {
   background-color: #412a2a;
   border: 0;
@@ -69,6 +90,7 @@ header {
   position: -webkit-sticky;
   position: sticky;
   background-color: #412a2a;
+  z-index: 1000;
 }
 
 nav li, .horizontal-list li {
@@ -81,7 +103,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #8d6b6b;
+  color: #a89999;
 }
 
 .nav-button {
@@ -93,7 +115,7 @@ nav a:hover {
   display: block;
   -webkit-transition: fill 0.3s ease 0.05s;
   transition: fill 0.3s ease 0.05s;
-  fill: #cf9e9e;
+  fill: #d8c9c9;
 }
 
 input[type=submit] {
@@ -102,14 +124,14 @@ input[type=submit] {
 }
 
 .svg-icon:hover, input[type=submit]:hover {
-  fill: #8d6b6b;
-  color: #8d6b6b;
+  fill: #a89999;
+  color: #a89999;
   cursor: pointer;
 }
 
 footer {
   /* Footer working on bottom */
-  background-color: #00000030;
+  background-color: #472f2f;
   position: absolute;
   bottom: 0;
   width: 100vw;
@@ -125,10 +147,6 @@ body::-webkit-scrollbar {
 }
 
 @media (max-aspect-ratio: 999 / 1000) and (max-width: 999px) {
-  a {
-    padding: 1.5vw;
-    font-size: 5vw;
-  }
   header {
     padding: 0.5vw 0.5vw;
     height: 10vh;
@@ -181,7 +199,7 @@ body::-webkit-scrollbar {
   .nav-button {
     visibility: visible;
     padding-left: 3vw;
-    font-size: 8vw;
+    font-size: 3em;
     border: none;
     background-color: inherit;
     cursor: pointer;

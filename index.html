@@ -22,7 +22,16 @@
                 padding-top: 5%;
             }
 
-            @media (max-aspect-ratio: 99/100) and (max-width: 1000px) {
+            a {
+                padding: 0.6em;
+            }
+
+            @media (max-aspect-ratio: 999/1000) and (max-width: 999px) {
+                a {
+                    padding: 1.5vw;
+                    font-size: 5vw;
+                }
+
                 .github, .linkedin {
                     width: 3em;
                 }
@@ -37,11 +46,13 @@
     <body>
         <h1>MC_2018</h1>
         <h2>Software Engineer</h2>
-        <ul class="horizontal-list" style="text-align: center; padding-top: 0.5em">
+        <br>
+        <ul class="horizontal-list" style="text-align: center;">
             <li><a class="github svg-icon" href="https://github.com/"></a></li>
             <li><a class="linkedin svg-icon" href="https://www.linkedin.com/"></a></li>
         </ul>
-        <h2 id="summary" style="padding-top: 2em; margin-left: auto; margin-right: auto">
+        <br><br><br>
+        <h2 id="summary" style="margin-left: auto; margin-right: auto">
             My current career interests are those involving game development
             (backend or level design), artificial intelligence, and cybersecurity.
         </h2>

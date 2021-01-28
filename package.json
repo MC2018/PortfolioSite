@@ -1,0 +1,32 @@
+{
+  "name": "portfoliosite",
+  "version": "1.0.0",
+  "description": "A website for my portfolio",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MC2018/PortfolioSite.git"
+  },
+  "keywords": [
+    "portfolio",
+    "programming",
+    "html",
+    "scss"
+  ],
+  "author": "MC_2018",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MC2018/PortfolioSite/issues"
+  },
+  "homepage": "https://github.com/MC2018/PortfolioSite#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nodemailer": "^6.4.17",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.0"
+  }
+}

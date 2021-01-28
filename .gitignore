@@ -1,0 +1,6 @@
+.env
+node_modules/*
+logs/*
+.vs/*
+.vscode/*
+public - Copy/*

@@ -70,7 +70,7 @@ app.post("/contact", (request, response) => {
     try {
         transporter.sendMail(mailOptions, function(error, info) {
             if (error) {
-                logger.error("Problem sending email: " + error);
+                logger.error(`Problem sending email: ${error}\n${JSON.stringify(request.body)}`);
                 response.json(getFailureResponse("We had a problem forwarding your information."));
             } else {
                 logger.info("Email sent: " + info.response);

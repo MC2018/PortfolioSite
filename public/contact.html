@@ -62,7 +62,7 @@
                     } else {
                         submitButton.setAttribute("value", "Submit");
                         submitButton.disabled = false;
-                        alert(`There was a problem sending the email from the server's side:\n${json.body}\nPlease try again at a later time.`);
+                        alert(`There was a problem sending the email from the server's side:\n${json.body}\n\nPlease try again at a later time.`);
                     }
                 } catch (err) {
                     submitButton.setAttribute("value", "Submit");

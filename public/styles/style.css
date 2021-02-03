@@ -19,7 +19,7 @@ body {
   position: relative;
 }
 
-nav li, nav a, button, textarea {
+nav li, nav a, textarea {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 1.3em;
@@ -58,20 +58,26 @@ label, input, textarea {
   -webkit-transition: background-color 0.3s ease 0.05s;
   transition: background-color 0.3s ease 0.05s;
   padding: 1.5em;
-  width: 90%;
+  width: 95%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 2em;
-  border-radius: 2em;
+  border-radius: 1.5em;
 }
 
 .info-box:hover {
   background-color: #412a2a;
 }
 
-input, textarea, button {
+input, textarea {
   background-color: #412a2a;
   border: 0;
+}
+
+/* Changes Chrome's autofill color */
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #412a2a inset !important;
+  -webkit-text-fill-color: #d8c9c9 !important;
 }
 
 header {
@@ -108,6 +114,7 @@ nav a:hover {
 
 .nav-button {
   visibility: hidden;
+  font-size: 5vh;
 }
 
 .svg-icon {
@@ -127,6 +134,10 @@ input[type=submit] {
   fill: #a89999;
   color: #a89999;
   cursor: pointer;
+}
+
+input[type=submit]:disabled {
+  color: #a89999;
 }
 
 footer {
@@ -199,7 +210,6 @@ body::-webkit-scrollbar {
   .nav-button {
     visibility: visible;
     padding-left: 3vw;
-    font-size: 3em;
     border: none;
     background-color: inherit;
     cursor: pointer;

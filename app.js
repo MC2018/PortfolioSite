@@ -3,6 +3,7 @@ const express = require("express");
 const winston = require("winston"); require("winston-daily-rotate-file");
 const dotenv = require("dotenv").config();
 const app = express();
+const req = require("request");
 
 // Winston Setup
 const logger = winston.createLogger({
@@ -41,8 +42,8 @@ let contactTimestamp = new Date(0);
 app.post("/contact", (request, response) => {
     let name = request.body.name;
     let contactEmail = request.body.contactEmail;
-    let subject = "Portfolio Contact: " + request.body.subject;
-    let body = request.body.body;
+    let subject = `Portfolio Contact: ${request.body.subject}`;
+    let body = `Name: ${name}\nContact Email: ${contactEmail}\n\n${request.body.body}`;
 
     if (new Date().getTime() - contactTimestamp < postThrottle) {
         response.end();
@@ -60,7 +61,7 @@ app.post("/contact", (request, response) => {
     });
 
     let mailOptions = {
-        from: contactEmail,
+        from: process.env.EMAIL_USER,
         to: process.env.EMAIL_USER,
         subject: subject,
         text: body
@@ -70,7 +71,7 @@ app.post("/contact", (request, response) => {
         transporter.sendMail(mailOptions, function(error, info) {
             if (error) {
                 logger.error("Problem sending email: " + error);
-                response.json(getFailureResponse("There was a problem sending the email."));
+                response.json(getFailureResponse("We had a problem forwarding your information."));
             } else {
                 logger.info("Email sent: " + info.response);
                 response.json(getSuccessResponse("Information successfully sent."));
@@ -78,7 +79,7 @@ app.post("/contact", (request, response) => {
         });
     } catch (error) {
         logger.error("Problem sending email: " + error);
-        response.json(getFailureResponse("There was a problem sending the email."));
+        response.json(getFailureResponse("An unexpected problem occurred."));
     }
 });
 

@@ -27,7 +27,6 @@ const logger = winston.createLogger({
     )
 });
 
-
 // Express Setup
 const port = 3000;
 app.listen(port, () => logger.info(`Listening at ${port}`));
@@ -46,6 +45,7 @@ app.post("/contact", (request, response) => {
     let body = `Name: ${name}\nContact Email: ${contactEmail}\n\n${request.body.body}`;
 
     if (new Date().getTime() - contactTimestamp < postThrottle) {
+        logger.error(`Potential spam ${error} (${JSON.stringify(request.body)})`);
         response.end();
         return;
     }
@@ -53,7 +53,7 @@ app.post("/contact", (request, response) => {
     contactTimestamp = new Date();
 
     let transporter = nodemailer.createTransport({
-        service: process.env.EMAIL_SERVICE,
+        host: process.env.EMAIL_HOST,
         auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS
@@ -62,27 +62,26 @@ app.post("/contact", (request, response) => {
 
     let mailOptions = {
         from: process.env.EMAIL_USER,
-        to: process.env.EMAIL_USER,
+        to: process.env.EMAIL_RECIPIENT,
         subject: subject,
         text: body
     };
 
+    response.json(getSuccessResponse("Information successfully sent."));
+    response.end();
+
     try {
         transporter.sendMail(mailOptions, function(error, info) {
             if (error) {
-                logger.error(`Problem sending email: ${error}\n${JSON.stringify(request.body)}`);
-                response.json(getFailureResponse("We had a problem forwarding your information."));
+                logger.error(`Problem sending email: ${error} (${JSON.stringify(mailOptions)})`);
             } else {
-                logger.info("Email sent: " + info.response);
-                response.json(getSuccessResponse("Information successfully sent."));
+                logger.info(`Email sent: ${info.response}`);
             }
         });
     } catch (error) {
-        logger.error("Problem sending email: " + error);
-        response.json(getFailureResponse("An unexpected problem occurred."));
+        logger.error(`Problem sending email: ${error}`);
     }
 });
-
 
 // Response Shortcuts
 function getSuccessResponse(parameters) {

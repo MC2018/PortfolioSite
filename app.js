@@ -3,7 +3,6 @@ const express = require("express");
 const winston = require("winston"); require("winston-daily-rotate-file");
 const dotenv = require("dotenv").config();
 const app = express();
-const req = require("request");
 
 // Winston Setup
 const logger = winston.createLogger({
@@ -73,13 +72,13 @@ app.post("/contact", (request, response) => {
     try {
         transporter.sendMail(mailOptions, function(error, info) {
             if (error) {
-                logger.error(`Problem sending email: ${error} (${JSON.stringify(mailOptions)})`);
+                logger.error(`Problem sending email: ${error} \t${JSON.stringify(mailOptions)}`);
             } else {
-                logger.info(`Email sent: ${info.response}`);
+                logger.info(`Email sent: ${info.response} \t${JSON.stringify(mailOptions)}`);
             }
         });
     } catch (error) {
-        logger.error(`Problem sending email: ${error}`);
+        logger.error(`Problem sending email: ${error} \t${JSON.stringify(mailOptions)}`);
     }
 });
 

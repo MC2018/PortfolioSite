@@ -1,9 +1,10 @@
-$text-color: #d8c9c9;
-$hover-color: #a89999;
+$primary-text-color: #e1e5ee;
+$secondary-text-color: #757575;
+$hover-color: #5d606e;
 
-$background-color: #523535;
-$secondary-background-color: #412a2a;
-$tertiary-background-color: #472f2f;
+$primary-background-color: #767b91;
+$secondary-background-color: #2a324b;
+$tertiary-background-color: #e1e5ee;
 
 $footer-padding: 2.5em;
 
@@ -11,7 +12,7 @@ $footer-padding: 2.5em;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    color: $text-color;
+    color: $primary-background-color;
 }
 
 html {
@@ -24,12 +25,20 @@ body {
     min-height: 100vh;
     padding-bottom: $footer-padding;
 
-    background-color: $background-color;
+    background-color: $primary-background-color;
     position: relative;
 }
 
-nav li, nav a, textarea {
-    font-family: "Roboto", sans-serif;
+h1, h2, h3, h4, h5, h6, nav a {
+    color: $primary-text-color;
+}
+
+.info-box h3 {
+    color: $primary-background-color;
+}
+
+nav li, nav a, textarea, p {
+    font-family: "Roboto", serif;
     font-weight: 400;
     font-size: 1.3em;
     text-decoration: none;
@@ -52,8 +61,8 @@ label, input, textarea {
 }
 
 .language-box {
-    background-color: $text-color;
-    color: $secondary-background-color;
+    background-color: $primary-background-color;
+    color: $tertiary-background-color;
     font-size: 0.75em;
     padding: 0.1em;
     display: inline-block;
@@ -64,7 +73,6 @@ label, input, textarea {
 
 .info-box {
     background-color: $tertiary-background-color;
-    transition: background-color 0.3s ease 0.05s;
     padding: 1.5em;
     width: 95%;
     margin-left: auto;
@@ -73,20 +81,15 @@ label, input, textarea {
     border-radius: 1.5em;
 }
 
-.info-box:hover {
-    background-color: $secondary-background-color;
-    //cursor: pointer;
-}
-
 input, textarea {
-    background-color: $secondary-background-color;
+    background-color: $tertiary-background-color;
     border: 0;
 }
 
 /* Changes Chrome's autofill color */
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px $secondary-background-color inset !important;
-    -webkit-text-fill-color: $text-color !important;
+    -webkit-box-shadow: 0 0 0 30px $tertiary-background-color inset !important;
+    -webkit-text-fill-color: $primary-background-color !important;
 }
 
 header {
@@ -122,7 +125,11 @@ nav a:hover {
     background-repeat: no-repeat;
     display: block;
     transition: fill 0.3s ease 0.05s;
-    fill: $text-color;
+    fill: $primary-background-color;
+}
+
+.svg-icon.off-color {
+    fill: $primary-text-color;
 }
 
 input[type=submit] {
@@ -141,7 +148,7 @@ input[type=submit]:disabled {
 
 footer {
     /* Footer working on bottom */
-    background-color: $tertiary-background-color;
+    background-color: $secondary-background-color;
     position: absolute;
     bottom: 0;
     width: 100vw;

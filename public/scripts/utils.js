@@ -1,6 +1,5 @@
 function initialize() {
     loadHeaderFooter();
-    loadName();
     loadSVGs();
 }
 
@@ -10,16 +9,16 @@ function loadHeaderFooter() {
     $("footer").load("footer.html");
 }
 
-function loadName() {
-    $(".name").each(function (index, html) {
-        var element = $(html);
-        element.text(element.text().replace("!fullName", fullName));
-    });
-}
-
 function loadSVGs() {
-    $(".github").load("images/github.svg");
-    $(".linkedin").load("images/linkedin.svg");
+    const svgs = {
+        github: "images/github.svg",
+        linkedin: "images/linkedin.svg",
+        download: "images/download.svg"
+    };
+
+    for (var key in svgs) {
+        $(`.${key}`).load(svgs[key]);
+    }
 }
 
 function manageNavigation() {

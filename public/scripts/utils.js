@@ -31,11 +31,3 @@ function loadSVGs(parent) {
         $(`${parent}.${key}`).load(svgs[key]);
     }
 }
-
-function manageNavigation() {
-    if ($("header nav").hasClass("visible")) {
-        $("header nav").removeClass("visible");
-    } else {
-        $("header nav").addClass("visible");
-    }
-}

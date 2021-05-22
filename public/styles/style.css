@@ -12,11 +12,23 @@
   scrollbar-width: none;
 }
 
+section {
+  min-height: 100vh;
+}
+
+section#main {
+  min-height: 97vh;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   /* Footer working on bottom */
   min-height: 100vh;
   padding-bottom: 4.3rem;
-  background-color: #1d1d1d;
+  background-image: url("../images/background.png");
   position: relative;
 }
 
@@ -29,12 +41,7 @@ h1, h2, h3, h4, h5, h6, nav a {
 }
 
 nav li, nav a, textarea, p {
-  font-weight: 400;
-  font-size: 1.25em;
   text-decoration: none;
-  padding: 0.2em 0.5em;
-  margin-left: 2vw;
-  margin-right: 2vw;
 }
 
 h1 {
@@ -84,6 +91,16 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   -webkit-text-fill-color: #1d1d1d !important;
 }
 
+header .test {
+  display: none;
+}
+
+html:not([data-scroll="0"]) header .test {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 header {
   top: 0vw;
   display: -webkit-box;
@@ -102,33 +119,17 @@ header {
 }
 
 header nav {
-  visibility: hidden;
-  opacity: 0;
-  -webkit-transition: all 0.2s linear;
-  transition: all 0.2s linear;
   text-align: center;
   margin: auto;
   clear: both;
-  padding-top: 10vh;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
 }
 
 header nav ul {
   z-index: 1;
-}
-
-header nav li {
-  display: block;
-  padding-top: 2vh;
-}
-
-header nav a {
-  font-size: 10vw;
 }
 
 nav li, .horizontal-list li {
@@ -145,6 +146,7 @@ nav a:hover {
 }
 
 .svg-icon {
+  margin: auto;
   background-repeat: no-repeat;
   display: block;
   -webkit-transition: fill 0.3s ease 0.05s;
@@ -182,15 +184,33 @@ footer {
   height: 4.3rem;
 }
 
-body::-webkit-scrollbar {
-  display: none;
+footer nav a {
+  font-size: 1.15em;
+  margin: 0em 7.3em;
+}
+
+footer nav a div {
+  padding-top: 0.4em;
 }
 
 /* Desktop / Landscape Views */
 @media (orientation: landscape), (min-width: 801px) {
+  section#main {
+    min-height: 90vh;
+  }
   header {
     padding: 1em;
-    height: 6em;
+    height: 10vh;
+    position: -webkit-sticky;
+    position: sticky;
+  }
+  header nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding-top: 0em;
+    padding-bottom: 0em;
+    font-size: 2em;
   }
   footer {
     position: absolute;

@@ -2,6 +2,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="scripts/background.js"></script>
         <script src="scripts/utils.js"></script>
         <script>
             $(document).ready(function () {
@@ -18,16 +19,7 @@
                 padding-top: 7%;
             }
 
-            a {
-                padding: 0.6em;
-            }
-
             @media (max-aspect-ratio: 999/1000) and (max-width: 999px) {
-                a {
-                    padding: 1.5vw;
-                    font-size: 5vw;
-                }
-
                 #summary {
                     width: 20em;
                 }
@@ -36,17 +28,31 @@
         <title>MC_2018</title>
     </head>
     <body>
-        <h1>MC_2018</h1>
-        <h2>Software Engineer</h2>
-        <br>
-        <ul class="horizontal-list" style="text-align: center;">
-            <li><a class="github svg-icon off-color" href="https://github.com/mc2018"></a></li>
-            <li><a class="linkedin svg-icon off-color" href="https://www.linkedin.com/"></a></li>
-        </ul>
-        <br><br><br><br><br><br><br><br>
-        <h2 id="summary" style="margin-left: auto; margin-right: auto">
-            I add life to programming projects I have a passion for.
-        </h2>
+        <header>
+            <nav>
+                <ul>
+                    <li><a class="test" href="/">Home</a></li>
+                    <li><a href="/projects.html">Projects</a></li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section id="main">
+            <h1>MC_2018</h1>
+            <h2>Software Engineer</h2>
+            <br>
+            <ul class="horizontal-list" style="text-align: center;">
+                <li><a class="github svg-icon off-color" href="https://github.com/mc2018"></a></li>
+                <li><a class="linkedin svg-icon off-color" href="https://www.linkedin.com/"></a></li>
+            </ul>
+            <!--<br><br><br><br><br><br><br><br>-->
+            <h2 id="summary" style="margin-left: auto; margin-right: auto">
+                I add life to programming projects I have a passion for.
+                idea for background: small white flakes to break up the solid blackish background?
+                and via image or programmatic, unsure
+            </h2>
+        </section>
         <br>
         <br>
         <br>
@@ -93,5 +99,29 @@
         3<br>
         2<br>
         1
+        <footer>
+            <nav>
+                <ul class="horizontal-list mobile-only" style="text-align: center;">
+                    <li>
+                        <a href="#aboutme">
+                            <div class="aboutme svg-icon off-color"></div>
+                            <div style="color: white">About Me</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#projects">
+                            <div class="projects svg-icon off-color"></div>
+                            <div style="color: white">Projects</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact">
+                            <div class="contact svg-icon off-color"></div>
+                            <div style="color: white">Contact</div>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </footer>
     </body>
 </html>

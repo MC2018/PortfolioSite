@@ -9,6 +9,9 @@ $tertiary-background-color: #0997DE;
 $footer-mobile-height: 4.3rem;
 $footer-desktop-height: 2em;
 
+$header-mobile-height: 3vh;
+$header-desktop-height: 10vh;
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
 
 * {
@@ -25,12 +28,25 @@ $footer-desktop-height: 2em;
     scrollbar-width: none;
 }
 
+section {
+    min-height: 100vh;
+}
+
+section#main {
+    min-height: 100vh - $header-mobile-height;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
 body {
     /* Footer working on bottom */
     min-height: 100vh;
     padding-bottom: $footer-mobile-height;
 
-    background-color: $primary-background-color;
+    background-image: url("../images/background.png");
+    //background-color: $primary-background-color;
     position: relative;
 }
 
@@ -43,12 +59,7 @@ h1, h2, h3, h4, h5, h6, nav a {
 }
 
 nav li, nav a, textarea, p {
-    font-weight: 400;
-    font-size: 1.25em;
     text-decoration: none;
-    padding: 0.2em 0.5em;
-    margin-left: 2vw;
-    margin-right: 2vw;
 }
 
 h1 {
@@ -98,6 +109,16 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     -webkit-text-fill-color: $primary-background-color !important;
 }
 
+header .test {
+    display: none;
+}
+
+html:not([data-scroll="0"]) {
+    header .test {
+        display: flex;
+    }
+}
+
 header {
     top: 0vw;
     display: flex;
@@ -106,30 +127,18 @@ header {
     background-color: $secondary-background-color;
     z-index: 1000;
     padding: 0.5vw 0.5vw;
-    height: 3vh;
+    height: $header-mobile-height;
 
     nav {
-        visibility: hidden;
-        opacity: 0;
-        transition: all 0.2s linear;
+        //transition: all 0.2s linear;
         text-align: center;
         margin: auto;
         clear: both;
-        padding-top: 10vh;
         justify-content: center;
-        display: flex;
+        display: none;
 
         ul {
             z-index: 1;
-        }
-
-        li {
-            display: block;
-            padding-top: 2vh;
-        }
-
-        a {
-            font-size: 10vw;
         }
     }
 }
@@ -147,6 +156,7 @@ nav a:hover {
 }
 
 .svg-icon {
+    margin: auto;
     background-repeat: no-repeat;
     display: block;
     transition: fill 0.3s ease 0.05s;
@@ -180,17 +190,38 @@ footer {
     width: 100vw;
     font-size: 0.7em;
     height: $footer-mobile-height;
-}
+    
+    nav a {
+        font-size: 1.15em;
+        margin: 0em 7.3em;
 
-body::-webkit-scrollbar {
-    display: none;
+        div {
+            padding-top: 0.4em;
+        }
+    }
+
+    nav li {
+        //font-size: 1.25em;
+    }
 }
 
 /* Desktop / Landscape Views */
 @media (orientation: landscape), (min-width: 801px) {
+    section#main {
+        min-height: 100vh - $header-desktop-height;
+    }
+
     header {
         padding: 1em;
-        height: 6em;
+        height: $header-desktop-height;
+        position: sticky;
+
+        nav {
+            display: flex;
+            padding-top: 0em;
+            padding-bottom: 0em;
+            font-size: 2em;
+        }
     }
 
     footer {

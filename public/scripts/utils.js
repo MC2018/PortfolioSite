@@ -1,15 +1,5 @@
 function initialize() {
-    //loadHeaderFooter();
     loadSVGs();
-}
-
-function loadHeaderFooter() {
-    //CSS.paintWorklet.addModule("scripts/background.js");
-    $("body").prepend("<header></header>").append("<footer></footer>");
-    $("header").load("header.html");
-    $("footer").load("footer.html", function() {
-        loadSVGs("footer");
-    });
 }
 
 function loadSVGs(parent) {

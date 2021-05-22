@@ -91,6 +91,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   -webkit-text-fill-color: #1d1d1d !important;
 }
 
+/* TODO: See if these two are still being used */
 header .test {
   display: none;
 }
@@ -184,13 +185,10 @@ footer {
   height: 4.3rem;
 }
 
-footer nav a {
+footer nav li {
   font-size: 1.15em;
-  margin: 0em 7.3em;
-}
-
-footer nav a div {
-  padding-top: 0.4em;
+  margin: 0 1.3em;
+  padding-top: 0.6em;
 }
 
 /* Desktop / Landscape Views */

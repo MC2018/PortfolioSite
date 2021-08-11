@@ -2,17 +2,36 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <!--<script src="scripts/background.js"></script>-->
-        <script src="scripts/utils.js"></script>
         <script>
             /*
             There may be a programmatic way to change the href "#" positions when on desktop
             */
 
             $(document).ready(function () {
-                initialize();
+                loadSVGs();
                 createMathProblem();
             });
+
+            function loadSVGs(parent) {
+                const svgs = {
+                    github: "images/github.svg",
+                    linkedin: "images/linkedin.svg",
+                    download: "images/download.svg",
+                    aboutme: "images/aboutme.svg",
+                    projects: "images/projects.svg",
+                    contact: "images/contact.svg"
+                };
+
+                if (parent) {
+                    parent += " ";
+                } else {
+                    parent = "";
+                }
+
+                for (var key in svgs) {
+                    $(`${parent}.${key}`).load(svgs[key]);
+                }
+            }
 
             function createMathProblem() {
                 let numbers = [Math.ceil(Math.random() * 5), Math.ceil(Math.random() * 5)];
@@ -115,73 +134,6 @@
             }
         </script>
         <link rel="stylesheet" href="styles/style.css">
-        <style type="text/css">
-            /*
-            This CSS needs to be removed
-            */
-            img {
-                height: 32%;
-                display: inline-block;
-            }
-
-            .window {
-                background-color: #ffffff1d;
-                width: 90%;
-                margin: auto;
-                align-items: center;
-                text-align: center;
-                padding: 2%;
-            }
-
-            textarea, form, input {
-                resize: none;
-                -webkit-border-radius: 0.5em;
-                -moz-border-radius: 0.5em;
-                border-radius: 0.5em;
-            }
-
-            input, textarea {
-                width: 30em;
-                padding: 0.5em;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            input[type=submit] {
-                width: 22.5em;
-                font-size: 2em;
-                -webkit-appearance: none;
-            }
-            
-            /* To set up the honeypot */
-            .oneyhay-otpay {
-                opacity: 0;
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 0;
-                width: 0;
-                z-index: -1;
-            }
-
-            @media (max-aspect-ratio: 999/1000) and (max-width: 999px) {
-                input, textarea, input[type=submit] {
-                    font-size: 1em;
-                    width: 95%;
-                }
-            }
-
-            /* Change the white to any color */
-
-            input:-webkit-autofill,
-            input:-webkit-autofill:hover,
-            input:-webkit-autofill:focus,
-            input:-webkit-autofill:active {
-                background-color:#ffffff1d;
-                transition: background-color 5000s ease-in-out 0s;
-            }
-        </style>
         <title>MC_2018</title>
     </head>
     <body>

@@ -264,12 +264,8 @@ nav a:hover {
     background-repeat: no-repeat;
     display: block;
     transition: fill 0.3s ease 0.05s;
-    fill: $primary-background-color;
-    width: 6vh;
-}
-
-.svg-icon.off-color {
     fill: $primary-text-color;
+    width: 6vh;
 }
 
 input[type=submit] {

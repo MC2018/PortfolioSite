@@ -259,12 +259,8 @@ nav a:hover {
   display: block;
   -webkit-transition: fill 0.3s ease 0.05s;
   transition: fill 0.3s ease 0.05s;
-  fill: #1d1d1d;
-  width: 6vh;
-}
-
-.svg-icon.off-color {
   fill: #E8F1F2;
+  width: 6vh;
 }
 
 input[type=submit] {

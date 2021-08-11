@@ -17,7 +17,7 @@ section#main {
 }
 
 section#aboutme {
-  min-height: 100vh;
+  padding-bottom: 12vh;
 }
 
 section#projects {
@@ -39,6 +39,7 @@ add display: inline-block to img and div, and set a max-width so that it doesn't
   transition: height .7s ease-out, width .3s ease;
   width: 40vw;
   height: 40vw;
+  margin-bottom: 1.8vw;
 }
 
 .container img.hidden {
@@ -73,6 +74,13 @@ add display: inline-block to img and div, and set a max-width so that it doesn't
           transition-delay: 0.3s;
 }
 
+.container .svg-icon {
+  display: inline-block;
+  width: 5.5vw;
+  -webkit-transform: translateY(25%);
+          transform: translateY(25%);
+}
+
 body::-webkit-scrollbar {
   display: none;
 }
@@ -101,10 +109,11 @@ nav li, nav a, textarea, p {
 
 h1 {
   font-size: 12vw;
+  padding-bottom: 2vh;
 }
 
 h2 {
-  font-size: 5.5vw;
+  font-size: 7.5vw;
 }
 
 h3 {
@@ -116,8 +125,8 @@ label, input, textarea {
 }
 
 .language-box {
-  background-color: #1d1d1d;
-  color: #ffffff1d;
+  background-color: #E8F1F2;
+  color: #1d1d1d;
   font-size: 0.75em;
   padding: 0.1em;
   display: inline-block;

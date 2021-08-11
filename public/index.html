@@ -215,6 +215,7 @@
             <h1>
                 About Me
             </h1>
+            <br>
             <div class="window">
                 <p>
                     MC_2018 is a developer who's been programming for almost a decade.
@@ -235,32 +236,224 @@
             <h1>
                 Projects
             </h1>
-            <div class="window container">
+            <br>
+            <div id="games" class="window container">
                 <h2>
                     Games
                 </h2>
+                <br>
                 <img id="gamesButton1" class="section" src="images/image.png" onclick="showHide(event)">
                 <img id="gamesButton2" class="section" src="images/image.png" onclick="showHide(event)">
                 <img id="gamesButton3" class="section" src="images/image.png" onclick="showHide(event)">
                 <img id="gamesButton4" class="section" src="images/image.png" onclick="showHide(event)">
                 <div id="gamesDetails1">
+                    <h3>
+                        Faithfall
+                        <label class="language-box">
+                            C#
+                        </label>
+                    </h3>
                     <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus minus iste alias, quis sequi optio labore ullam omnis quasi illo asperiores assumenda neque corporis inventore aliquam odio eos rem. Ipsa.
+                        Faithfall (a working title) is a 2D platformer using the Unity engine.
+                        <br><br>
+                        The project started in June of 2020 and is in active development with associates of mine.
+                        My role as CTO has me working on most game mechanics and leading how the codebase should be structured.
+                        This project is very much a work-in-progress.
                     </p>
                 </div>
                 <div id="gamesDetails2">
+                    <h3>
+                        Cave Runner
+                        <label class="language-box">
+                            Java
+                        </label>
+                    </h3>
                     <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus minus iste alias, quis sequi optio labore ullam omnis quasi illo asperiores assumenda neque corporis inventore aliquam odio eos rem. Ipsa.
+                        In October of 2017, my friends and I entered a nation-wide 2D platformer game development challenge hosted by the
+                        <a href="https://bpa.org/">Business Professionals of America</a>.
+                        I led the team and handled development of the game's physics engine, display, and input.
+                        <br><br>
+                        In May of 2018, we travelled to Dallas for their national event where we showcased our game to a wide
+                        range of panelists, and placed 8th overall.
+                        While we could have put much more work into the game, I am proud of having developed a game engine for this project
+                        instead of choosing a pre-existing engine.
                     </p>
                 </div>
                 <div id="gamesDetails3">
+                    <h3>
+                        Tetris Runner
+                        <label class="language-box">
+                            Java
+                        </label>
+                    </h3>
                     <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus minus iste alias, quis sequi optio labore ullam omnis quasi illo asperiores assumenda neque corporis inventore aliquam odio eos rem. Ipsa.
+                        A recreation of Tetris seemed a bit lackluster for a 12-hour hackathon with a party of four,
+                        so instead in December of 2017, we developed a unique two-player versus-style version.
+                        <br><br>
+                        One player controlled the Tetris game, while the other controlled a physics-bound character, trying to
+                        dodge the tetronimos as they fell down. For this project, I worked on the input controls and physics engine of the game,
+                        and we ended up winning the competition with it.
                     </p>
                 </div>
                 <div id="gamesDetails4">
+                    <h3>
+                        TheCloudMC Minecraft Server
+                        <label class="language-box">
+                            Minecraft Commands
+                        </label>
+                    </h3>
                     <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus minus iste alias, quis sequi optio labore ullam omnis quasi illo asperiores assumenda neque corporis inventore aliquam odio eos rem. Ipsa.
+                        In 2014, a friend and I created our own Minecraft server; however, I wanted to make it "Vanilla".
+                        This means making a server with the original (unoptimized) JAR provided by the developers with no external plugins enabled.
+                        My challenge was to get a server as functioning as any other plugin-based server through the use of in-game commands and command blocks.
+                        <br><br>
+                        We accomplished all of this and more; I developed systems to set multiple homes, allow player teleport requests,
+                        enable spawn protection, moderate rule breakers, and much more.
+                        With these features in place, we became the most popular Vanilla server in the world.
+                        <br><br>
+                        A large challenge with this project was optimization.
+                        Command blocks can be fairly lag-inducive; this paired with Mojang's poor multiplayer optimizations made better program designing a must.
+                    </p>
+                </div>
+            </div>
+            <div id="encryption" class="window container">
+                <h2>
+                    Encryption
+                </h2>
+                <br>
+                <img id="encryptionButton1" class="section" src="images/image.png" onclick="showHide(event)">
+                <img id="encryptionButton2" class="section" src="images/image.png" onclick="showHide(event)">
+                <div id="encryptionDetails1">
+                    <h3>
+                        Plain Sight
+                        <label class="language-box">
+                            Java
+                        </label>
+                        <a class="github svg-icon off-color" href="https://github.com/MC2018/PlainSight"></a>
+                        <a class="download svg-icon off-color"></a>
+                    </h3>
+                    <p>
+                        For a local hackathon in Fall of 2017, I wanted to hide text inside of any image you gave it with password protection.
+                        Two friends of mine helped in development of this 24-hour challenge where we magnified the image size and stored bits of data from slight offsets in its RGB values.
+                        <br><br>
+                        We won the competition but we weren't proud of the outcome; a year later, we improved upon the original design and placed Top 10 at the 2018 HackOHI/O OSU hackathon.
+                        I was still unhappy with how slow the finished version was; the GitHub repo shows a complete redesign by me, focusing on optimizations, securities, and long-term scalability.
+                    </p>
+                </div>
+                <div id="encryptionDetails2">
+                    <h3>
+                        Image Encryption
+                        <label class="language-box">
+                            Java
+                        </label>
+                    </h3>
+                    <p>
+                        A predecessor to Plain Sight, I grew intrigued with encryption in July of 2017.
+                        This simpler idea would hide a message, locked with a password, in an image filled with noise.
+                        <br><br>
+                        One thing to improve upon for this project would be to randomize which pixels held your data;
+                        as-is, it saves the encrypted data like one would a book; all pixels after an extent are random nonsense.
+                        Spreading out the data based on the password would be a more secure approach moving forward.
+                    </p>
+                </div>
+            </div>
+            
+            <div id="misc" class="window container">
+                <h2>
+                    Misc.
+                </h2>
+                <br>
+                <img id="miscButton1" class="section" src="images/image.png" onclick="showHide(event)">
+                <img id="miscButton2" class="section" src="images/image.png" onclick="showHide(event)">
+                <img id="miscButton3" class="section" src="images/image.png" onclick="showHide(event)">
+                <img id="miscButton4" class="section" src="images/image.png" onclick="showHide(event)">
+                <div id="miscDetails1">
+                    <h3>
+                        Portfolio Site
+                        <label class="language-box">
+                            HTML
+                        </label>
+                        <label class="language-box">
+                            SCSS
+                        </label>
+                        <label class="language-box">
+                            Node
+                        </label>
+                        <a class="github svg-icon off-color" href="https://github.com/MC2018/PortfolioSite"></a>
+                    </h3>
+                    <p>
+                        I started this project in Fall of 2020 to strengthen my resume.
+                        Additionally, I wanted better to get a better grasp of CSS's potential (since I would often use too much JavaScript for effects).
+                        <br><br>
+                        Along with achieving that, I also learned how to support mobile devices using different layouts.
+                        The backend utilizes Express for requests, Winston for logging, and Nodemailer for my contact page to forward emails.
+                    </p>
+                </div>
+                <div id="miscDetails2">
+                    <h3>
+                        Shuffull
+                        <label class="language-box">
+                            C#
+                        </label>
+                        <label class="language-box">
+                            Java
+                        </label>
+                        <a class="github svg-icon off-color" href="https://github.com/MC2018/ShuffullOld"></a>
+                    </h3>
+                    <p>
+                        A pet peeve of mine has been the poor quality of music shufflers;
+                        Spotify playlists replays songs too quickly and YouTube playlists don't properly shuffle playlists over 100 videos.
+                        This is the problem that I aspired to solve in May of 2017.
+                        Using a GUI, this program allows you to manage replayability of individual playlists locally.
+                        <br><br>
+                        Over the years, I have re-designed this program, and currently have plans to create a server-based version.
+                        This will allow for accounts to sync playlist data between multiple devices.
+                    </p>
+                </div>
+                <div id="miscDetails3">
+                    <h3>
+                        Sudoku Generator
+                        <label class="language-box">
+                            Java
+                        </label>
+                        <a class="github svg-icon off-color" href="https://github.com/MC2018/SudokuGenerator"></a>
+                        <a class="download svg-icon off-color"></a>
+                    </h3>
+                    <p>
+                        Puzzle games have always been interesting for me, so I wanted to learn how to generate sudoku puzzles.
+                        After jokingly trying to randomly brute-force sudoku points (to no avail), I created a wholly unique algorithm in 2018.
+                        <br><br>
+                        Along with normal sudokus, I also created an option to force-enable maps with diagonal matches.
+                        I was able to get the normal generation time down to ~10ms per map, and around 1-2 seconds per diagonal map.
+                    </p>
+                </div>
+                <div id="miscDetails4">
+                    <h3>
+                        Discord Bot Manager
+                        <label class="language-box">
+                            Java
+                        </label>
+                        <label class="language-box">
+                            JavaScript
+                        </label>
+                        <label class="language-box">
+                            Selenium/JSoup
+                        </label>
+                        <a class="github svg-icon off-color" href="https://github.com/MC2018/BotManager"></a>
+                    </h3>
+                    <p>
+                        I started my creation of Discord bots in 2017 when I developed two different bots: one for a friend, and one for a YouTuber.
+                        These bots shared gambling commands, but had custom commands for each demographic (involving Pokemon, Clash Royale, and CS:GO).
+                        <br><br>
+                        As time progressed, and more bots were made, I started making the program simplified and expandable.
+                        This ended up being a more straightforward abstraction of the JDA library
+                        (which has helped my friend in developing <a href="https://github.com/Hyreon/Frostbalance">his own Discord project</a>).
+                        <br><br>
+                        My most popular bot is made to fetch speedrun data from
+                        <a href="https://www.speedrun.com/">Speedrun.com</a> for both leaderboards and individual runs;
+                        their API, however, isn't always optimal, so I additionally used Selenium and JSoup to scrape info from their site's HTML.
+                        My latest bot is a group project manager which I initially created for my own use in my ongoing projects.
+                        It manages task organization (similar to JIRA) for the Discord platform and provides GitHub PR notifications.
                     </p>
                 </div>
             </div>
@@ -269,7 +462,6 @@
             <h1>
                 Contact
             </h1>
-            <br>
             <br>
             <form style="margin-left: auto; margin-right: auto;" onsubmit="sendEmail(); return false">
                 <input id="name" type="text" placeholder="Full name" required>

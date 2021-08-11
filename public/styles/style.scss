@@ -33,7 +33,8 @@ section#main {
 }
 
 section#aboutme {
-    min-height: 100vh;
+    //min-height: 120vh;
+    padding-bottom: 12vh;
 }
 
 section#projects {
@@ -54,6 +55,7 @@ add display: inline-block to img and div, and set a max-width so that it doesn't
         transition: height .7s ease-out, width .3s ease;
         width: 40vw;
         height: 40vw;
+        margin-bottom: 1.8vw;
     }
 
     img.hidden {
@@ -87,6 +89,12 @@ add display: inline-block to img and div, and set a max-width so that it doesn't
     .delayed-transition {
         transition-delay: 0.3s;
     }
+
+    .svg-icon {
+        display: inline-block;
+        width: 5.5vw;
+        transform: translateY(25%);
+    }
 }
 
 body::-webkit-scrollbar {
@@ -118,10 +126,11 @@ nav li, nav a, textarea, p {
 
 h1 {
     font-size: 12vw;
+    padding-bottom: 2vh;
 }
 
 h2 {
-    font-size: 5.5vw;
+    font-size: 7.5vw;
 }
 
 h3 {
@@ -133,8 +142,8 @@ label, input, textarea {
 }
 
 .language-box {
-    background-color: $primary-background-color;
-    color: $tertiary-background-color;
+    background-color: $primary-text-color;
+    color: $primary-background-color;
     font-size: 0.75em;
     padding: 0.1em;
     display: inline-block;

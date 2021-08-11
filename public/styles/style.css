@@ -13,11 +13,60 @@
 }
 
 section {
-  min-height: 100vh;
+  min-height: 80vh;
 }
 
 section#main {
-  min-height: 97vh;
+  min-height: 87vh;
+}
+
+/*
+Note for .container
+In desktop mode, to have content move to side:
+add display: inline-block to img and div, and set a max-width so that it doesn't expand larger than (the container size - the image)
+*/
+.container {
+  -webkit-transition: height 0.5s ease-out;
+  transition: height 0.5s ease-out;
+}
+
+.container img {
+  -webkit-transition: height .7s ease-out, width .3s ease;
+  transition: height .7s ease-out, width .3s ease;
+  width: 40vw;
+  height: 40vw;
+}
+
+.container img.hidden {
+  width: 0;
+  height: 0;
+}
+
+.container div {
+  -webkit-transition: font-size 0.7s ease-out, opacity 1s ease;
+  transition: font-size 0.7s ease-out, opacity 1s ease;
+  font-size: 0;
+  opacity: 0;
+  height: 0;
+}
+
+.container div * {
+  height: 0;
+}
+
+.container div.selected {
+  height: auto;
+  opacity: 1;
+  font-size: inherit;
+}
+
+.container div.selected * {
+  height: inherit;
+}
+
+.container .delayed-transition {
+  -webkit-transition-delay: 0.3s;
+          transition-delay: 0.3s;
 }
 
 body::-webkit-scrollbar {
@@ -27,13 +76,15 @@ body::-webkit-scrollbar {
 body {
   /* Footer working on bottom */
   min-height: 100vh;
-  padding-bottom: 4.3rem;
-  background-image: url("../images/background.png");
+  padding-bottom: 10vh;
+  background: #383535;
+  background-image: url("../images/background.jpg");
   position: relative;
 }
 
 h1, h2, h3, h4, h5, h6, nav a {
   color: #E8F1F2;
+  text-align: center;
 }
 
 .info-box h3 {
@@ -45,13 +96,14 @@ nav li, nav a, textarea, p {
 }
 
 h1 {
-  text-align: center;
-  padding-top: 0.7em;
   font-size: 12vw;
 }
 
 h2 {
-  text-align: center;
+  font-size: 5.5vw;
+}
+
+h3 {
   font-size: 4.5vw;
 }
 
@@ -61,7 +113,7 @@ label, input, textarea {
 
 .language-box {
   background-color: #1d1d1d;
-  color: #0997DE;
+  color: #ffffff1d;
   font-size: 0.75em;
   padding: 0.1em;
   display: inline-block;
@@ -71,7 +123,7 @@ label, input, textarea {
 }
 
 .info-box {
-  background-color: #0997DE;
+  background-color: #ffffff1d;
   padding: 1.5em;
   width: 95%;
   margin-left: auto;
@@ -81,13 +133,13 @@ label, input, textarea {
 }
 
 input, textarea {
-  background-color: #0997DE;
+  background-color: #ffffff1d;
   border: 0;
 }
 
 /* Changes Chrome's autofill color */
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px #0997DE inset !important;
+  -webkit-box-shadow: 0 0 0 30px #ffffff1d inset !important;
   -webkit-text-fill-color: #1d1d1d !important;
 }
 
@@ -133,6 +185,10 @@ header nav ul {
   z-index: 1;
 }
 
+header nav ul li {
+  padding: 0em 1em;
+}
+
 nav li, .horizontal-list li {
   display: inline-block;
 }
@@ -153,7 +209,7 @@ nav a:hover {
   -webkit-transition: fill 0.3s ease 0.05s;
   transition: fill 0.3s ease 0.05s;
   fill: #1d1d1d;
-  width: 3em;
+  width: 6vh;
 }
 
 .svg-icon.off-color {
@@ -165,9 +221,9 @@ input[type=submit] {
   transition: color 0.3s ease 0.05s;
 }
 
-.svg-icon:hover, input[type=submit]:hover {
-  fill: #5d606e;
-  color: #5d606e;
+.svg-icon:hover, input[type=submit]:hover, a, a:visited, a:hover, a:active {
+  fill: #E8F1F2;
+  color: #E8F1F2;
   cursor: pointer;
 }
 
@@ -182,24 +238,21 @@ footer {
   bottom: 0px;
   width: 100vw;
   font-size: 0.7em;
-  height: 4.3rem;
+  height: 10vh;
 }
 
 footer nav li {
-  font-size: 1.15em;
-  margin: 0 3.1vw;
+  font-size: 1.75vh;
+  margin: 0 3vw;
   padding-top: 0.6em;
   width: 20vw;
 }
 
 /* Desktop / Landscape Views */
 @media (orientation: landscape), (min-width: 801px) {
-  section#main {
-    min-height: 90vh;
-  }
   header {
     padding: 1em;
-    height: 10vh;
+    height: 5em;
     position: -webkit-sticky;
     position: sticky;
   }
@@ -224,6 +277,9 @@ footer nav li {
   }
   h2 {
     font-size: 2.5em;
+  }
+  h3 {
+    font-size: 2em;
   }
   .mobile-only {
     display: none;

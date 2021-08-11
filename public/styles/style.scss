@@ -4,13 +4,13 @@ $hover-color: #5d606e;
 
 $primary-background-color: #1d1d1d;
 $secondary-background-color: #C91D3C;
-$tertiary-background-color: #0997DE;
+$tertiary-background-color: #ffffff1d;
 
-$footer-mobile-height: 4.3rem;
+$footer-mobile-height: 10vh;
 $footer-desktop-height: 2em;
 
 $header-mobile-height: 3vh;
-$header-desktop-height: 10vh;
+$header-desktop-height: 5em;
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
 
@@ -29,11 +29,59 @@ $header-desktop-height: 10vh;
 }
 
 section {
-    min-height: 100vh;
+    min-height: 80vh;
 }
 
 section#main {
-    min-height: 100vh - $header-mobile-height;
+    min-height: 100vh - $header-mobile-height - $footer-mobile-height;
+}
+
+/*
+Note for .container
+In desktop mode, to have content move to side:
+add display: inline-block to img and div, and set a max-width so that it doesn't expand larger than (the container size - the image)
+*/
+
+.container {
+    transition: height 0.5s ease-out;
+
+    img {
+        transition: height .7s ease-out, width .3s ease;
+        width: 40vw;
+        height: 40vw;
+    }
+
+    img.hidden {
+        width: 0;
+        height: 0;
+    }
+
+    div {
+        transition: font-size 0.7s ease-out, opacity 1s ease;
+        font-size: 0;
+        opacity: 0;
+        height: 0;
+
+        * {
+            height: 0;
+        }
+    }
+
+    div.selected {
+        //animation: fadeIn 1s;
+        //transition-delay: 0s;
+        height: auto;
+        opacity: 1;
+        font-size: inherit;
+
+        * {
+            height: inherit;
+        }
+    }
+
+    .delayed-transition {
+        transition-delay: 0.3s;
+    }
 }
 
 body::-webkit-scrollbar {
@@ -44,14 +92,15 @@ body {
     /* Footer working on bottom */
     min-height: 100vh;
     padding-bottom: $footer-mobile-height;
-
-    background-image: url("../images/background.png");
+    background: rgb(56, 53, 53);
+    background-image: url("../images/background.jpg");
     //background-color: $primary-background-color;
     position: relative;
 }
 
 h1, h2, h3, h4, h5, h6, nav a {
     color: $primary-text-color;
+    text-align: center;
 }
 
 .info-box h3 {
@@ -63,13 +112,14 @@ nav li, nav a, textarea, p {
 }
 
 h1 {
-    text-align: center;
-    padding-top: 0.7em;
     font-size: 12vw;
 }
 
 h2 {
-    text-align: center;
+    font-size: 5.5vw;
+}
+
+h3 {
     font-size: 4.5vw;
 }
 
@@ -140,6 +190,10 @@ header {
 
         ul {
             z-index: 1;
+
+            li {
+                padding: 0em 1em;
+            }
         }
     }
 }
@@ -162,7 +216,7 @@ nav a:hover {
     display: block;
     transition: fill 0.3s ease 0.05s;
     fill: $primary-background-color;
-    width: 3em;
+    width: 6vh;
 }
 
 .svg-icon.off-color {
@@ -173,9 +227,9 @@ input[type=submit] {
     transition: color 0.3s ease 0.05s;
 }
 
-.svg-icon:hover, input[type=submit]:hover {
-    fill: $hover-color;
-    color: $hover-color;
+.svg-icon:hover, input[type=submit]:hover, a, a:visited, a:hover, a:active {
+    fill: $primary-text-color;
+    color: $primary-text-color;
     cursor: pointer;
 }
 
@@ -193,8 +247,8 @@ footer {
     height: $footer-mobile-height;
     
     nav li {
-        font-size: 1.15em;
-        margin: 0 3.1vw;
+        font-size: 1.75vh;
+        margin: 0 3vw;
         padding-top: 0.6em;
         width: 20vw;
     }
@@ -202,9 +256,9 @@ footer {
 
 /* Desktop / Landscape Views */
 @media (orientation: landscape), (min-width: 801px) {
-    section#main {
-        min-height: 100vh - $header-desktop-height;
-    }
+    //section#main {
+        //min-height: 1em - $header-desktop-height;
+    //}
 
     header {
         padding: 1em;
@@ -236,6 +290,10 @@ footer {
 
     h2 {
         font-size: 2.5em;
+    }
+
+    h3 {
+        font-size: 2em;
     }
 
     .mobile-only {

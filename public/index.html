@@ -2,27 +2,184 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="scripts/background.js"></script>
+        <!--<script src="scripts/background.js"></script>-->
         <script src="scripts/utils.js"></script>
         <script>
+            /*
+            There may be a programmatic way to change the href "#" positions when on desktop
+            */
+
             $(document).ready(function () {
                 initialize();
+                createMathProblem();
             });
+
+            function createMathProblem() {
+                let numbers = [Math.ceil(Math.random() * 5), Math.ceil(Math.random() * 5)];
+                document.getElementById("math").placeholder = `What is ${numbers[0]} + ${numbers[1]}?`;
+                mathAnswer = numbers[0] + numbers[1];
+            }
+
+            async function sendEmail() {
+                let honeypot = document.getElementsByClassName("oneyhay-otpay");
+                let math = document.getElementById("math");
+
+                for (var i = 0; i < honeypot.length; i++) {
+                    if (honeypot[i].value) {
+                        alert("You are being suspected of sending spam mail. If this is a mistake, please refresh the page and try again without using autofill.");
+                        return;
+                    }
+                }
+
+                if (math.value != mathAnswer) {
+                    alert("Please answer the math question correctly.");
+                    return;
+                }
+
+                let submitButton = document.getElementById("submit");
+                submitButton.setAttribute("value", "Submitting...");
+                submitButton.disabled = true;
+
+                let body = {
+                    name: document.getElementById("name").value,
+                    contactEmail: document.getElementById("contactEmail").value,
+                    subject: document.getElementById("subject").value,
+                    body: document.getElementById("body").value
+                };
+                    
+                let options = {
+                    method: "POST",
+                    body: JSON.stringify(body),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                };
+
+                try {
+                    let response = await fetch("/contact", options);
+                    let json = await response.json();
+
+                    if (json.status == "success") {
+                        submitButton.setAttribute("value", "Submitted");
+                        alert(json.body);
+                    } else {
+                        submitButton.setAttribute("value", "Submit");
+                        submitButton.disabled = false;
+                        alert(`There was a problem sending the email from the server's side:\n${json.body}\n\nPlease try again at a later time.`);
+                    }
+                } catch (err) {
+                    submitButton.setAttribute("value", "Submit");
+                    submitButton.disabled = false;
+                    alert("There was a problem connecting to the server, please try again at a later time if it continues to persist.");
+                }
+            }
+            
+            function showHide(event) {
+                let id = event.target.id;
+                let details = id.split("Button");
+                let sectionName = details[0], index = details[1];
+                let sectionButtons = Array.from(document.querySelectorAll(`[id ^= "${sectionName}Button"]`));
+                let alreadySelected = event.target.classList.contains("selected");
+                let paragraph = document.getElementById(`${sectionName}Details${index}`);
+
+                sectionButtons.splice(sectionButtons.indexOf(event.target), 1);
+
+                // Prevents clicking on two around the same time
+                for (var i = 0; i < sectionButtons.length; i++) {
+                    if (sectionButtons[i].classList.contains("selected")) {
+                        return;
+                    }
+                }
+
+                if (alreadySelected) {
+                    event.target.classList.remove("selected");
+                    paragraph.classList.remove("delayed-transition");
+                    paragraph.classList.remove("selected");
+                } else {
+                    event.target.classList.add("selected");
+                    paragraph.classList.add("delayed-transition");
+                    paragraph.classList.add("selected");
+                }
+
+                for (let i = 0; i < sectionButtons.length; i++) {
+                    let element = sectionButtons[i];
+
+                    if (alreadySelected) {
+                        element.classList.add("delayed-transition");
+                        element.classList.remove("hidden");
+                    } else {
+                        element.classList.remove("delayed-transition");
+                        element.classList.add("hidden");
+                    }
+                }
+            }
         </script>
         <link rel="stylesheet" href="styles/style.css">
         <style type="text/css">
-            #summary {
-                width: 60%;
+            /*
+            This CSS needs to be removed
+            */
+            img {
+                height: 32%;
+                display: inline-block;
             }
 
-            h1 {
-                padding-top: 7%;
+            .window {
+                background-color: #ffffff1d;
+                width: 90%;
+                margin: auto;
+                align-items: center;
+                text-align: center;
+                padding: 2%;
+            }
+
+            textarea, form, input {
+                resize: none;
+                -webkit-border-radius: 0.5em;
+                -moz-border-radius: 0.5em;
+                border-radius: 0.5em;
+            }
+
+            input, textarea {
+                width: 30em;
+                padding: 0.5em;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            input[type=submit] {
+                width: 22.5em;
+                font-size: 2em;
+                -webkit-appearance: none;
+            }
+            
+            /* To set up the honeypot */
+            .oneyhay-otpay {
+                opacity: 0;
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 0;
+                width: 0;
+                z-index: -1;
             }
 
             @media (max-aspect-ratio: 999/1000) and (max-width: 999px) {
-                #summary {
-                    width: 20em;
+                input, textarea, input[type=submit] {
+                    font-size: 1em;
+                    width: 95%;
                 }
+            }
+
+            /* Change the white to any color */
+
+            input:-webkit-autofill,
+            input:-webkit-autofill:hover,
+            input:-webkit-autofill:focus,
+            input:-webkit-autofill:active {
+                background-color:#ffffff1d;
+                transition: background-color 5000s ease-in-out 0s;
             }
         </style>
         <title>MC_2018</title>
@@ -31,79 +188,90 @@
         <header>
             <nav>
                 <ul>
-                    <li><a class="test" href="/">Home</a></li>
-                    <li><a href="/projects.html">Projects</a></li>
-                    <li><a href="/about.html">About</a></li>
-                    <li><a href="/contact.html">Contact</a></li>
+                    <li><a href="#">About Me</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </header>
         <section id="main">
+            <br>
+            <br>
+            <br>
             <h1>MC_2018</h1>
+            <br>
             <h2>Software Engineer</h2>
             <br>
             <ul class="horizontal-list" style="text-align: center;">
                 <li><a class="github svg-icon off-color" href="https://github.com/mc2018"></a></li>
                 <li><a class="linkedin svg-icon off-color" href="https://www.linkedin.com/"></a></li>
             </ul>
-            <!--<br><br><br><br><br><br><br><br>-->
-            <h2 id="summary" style="margin-left: auto; margin-right: auto">
-                I add life to programming projects I have a passion for.
-                idea for background: small white flakes to break up the solid blackish background?
-                and via image or programmatic, unsure
-            </h2>
+            <br>
+            <h3 id="summary" style="margin-left: auto; margin-right: auto; width: 90%">
+                Fields of interest I would like to pursue include video games, websites, AI, and any other unique ideas that come to me.
+            </h3>
         </section>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <h2 id="content">
-            hi
-        </h2>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        10<br>
-        <div id="contact"></div>
-        9<br>
-        8<br>
-        7<br>
-        6<br>
-        5<br>
-        4<br>
-        3<br>
-        2<br>
-        1
+        <section id="projects">
+            <h1>
+                Projects
+            </h1>
+            <div class="window container">
+                <h2>
+                    Games
+                </h2>
+                <img id="gamesButton1" class="section" src="images/image.png" onclick="showHide(event)">
+                <img id="gamesButton2" class="section" src="images/image.png" onclick="showHide(event)">
+                <img id="gamesButton3" class="section" src="images/image.png" onclick="showHide(event)">
+                <img id="gamesButton4" class="section" src="images/image.png" onclick="showHide(event)">
+                <div id="gamesDetails1">
+                    <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus minus iste alias, quis sequi optio labore ullam omnis quasi illo asperiores assumenda neque corporis inventore aliquam odio eos rem. Ipsa.
+                    </p>
+                </div>
+                <div id="gamesDetails2">
+                    <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus minus iste alias, quis sequi optio labore ullam omnis quasi illo asperiores assumenda neque corporis inventore aliquam odio eos rem. Ipsa.
+                    </p>
+                </div>
+                <div id="gamesDetails3">
+                    <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus minus iste alias, quis sequi optio labore ullam omnis quasi illo asperiores assumenda neque corporis inventore aliquam odio eos rem. Ipsa.
+                    </p>
+                </div>
+                <div id="gamesDetails4">
+                    <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus minus iste alias, quis sequi optio labore ullam omnis quasi illo asperiores assumenda neque corporis inventore aliquam odio eos rem. Ipsa.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section id="contact">
+            <h1>
+                Contact
+            </h1>
+            <br>
+            <br>
+            <form style="margin-left: auto; margin-right: auto;" onsubmit="sendEmail(); return false">
+                <input id="name" type="text" placeholder="Full name" required>
+                <br>
+                <input id="contactEmail" type="email" placeholder="Email address" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+                <br>
+                <input id="subject" type="text" placeholder="Subject" required>
+                <br>
+                <textarea id="body" type="text" placeholder="Message" style="height: 10em" required></textarea>
+                <br>
+                <input id="math" type="text" inputmode="numeric" placeholder="Subject" required>
+                <br>
+                <input id="randomHoney123Abc" type="text" placeholder="Fake input" class="oneyhay-otpay" autocomplete="nope">
+                <input id="submit" style="display: block;" type="submit" value="Submit">
+            </form>
+            <br>
+        </section>
         <footer>
             <nav>
                 <ul class="horizontal-list mobile-only" style="text-align: center;">
                     <li>
-                        <a href="#aboutme">
+                        <a href="#">
                             <div class="aboutme svg-icon off-color"></div>
                             About Me
                         </a>

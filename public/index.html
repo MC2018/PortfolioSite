@@ -73,7 +73,7 @@
                     alert("There was a problem connecting to the server, please try again at a later time if it continues to persist.");
                 }
             }
-            
+
             function showHide(event) {
                 let id = event.target.id;
                 let details = id.split("Button");
@@ -85,7 +85,7 @@
                 sectionButtons.splice(sectionButtons.indexOf(event.target), 1);
 
                 // Prevents clicking on two around the same time
-                for (var i = 0; i < sectionButtons.length; i++) {
+                for (let i = 0; i < sectionButtons.length; i++) {
                     if (sectionButtons[i].classList.contains("selected")) {
                         return;
                     }
@@ -211,6 +211,26 @@
                 Fields of interest I would like to pursue include video games, websites, AI, and any other unique ideas that come to me.
             </h3>
         </section>
+        <section id="aboutme">
+            <h1>
+                About Me
+            </h1>
+            <div class="window">
+                <p>
+                    MC_2018 is a developer who's been programming for almost a decade.
+                    His gateway into coding started with Minecraft's esoteric command block language.
+                    With these skills, he developed unique features for a popular Vanilla server (a server with no external plugins).
+                    <br><br>
+                    From there, MC excelled with Java and Swift during his last two years of high school.
+                    During that time, he partipated in many hackathons, either winning or placing among the top.
+                    He also led a team for a nation-wide game development competition with the
+                    <a href="https://bpa.org/">Business Professionals of America</a>, where they placed 8th overall.
+                    <br><br>
+                    As of now, MC is a senior at the University of Toledo, majoring in Computer Science and Engineering and minoring in Mathematics.
+                    One of his key interests is game development, and his senior classes will be spent focusing on artificial intelligence and machine learning.
+                </p>
+            </div>
+        </section>
         <section id="projects">
             <h1>
                 Projects
@@ -271,7 +291,7 @@
             <nav>
                 <ul class="horizontal-list mobile-only" style="text-align: center;">
                     <li>
-                        <a href="#">
+                        <a href="#aboutme">
                             <div class="aboutme svg-icon off-color"></div>
                             About Me
                         </a>

@@ -12,12 +12,16 @@
   scrollbar-width: none;
 }
 
-section {
-  min-height: 80vh;
-}
-
 section#main {
   min-height: 87vh;
+}
+
+section#aboutme {
+  min-height: 100vh;
+}
+
+section#projects {
+  padding-bottom: 12vh;
 }
 
 /*

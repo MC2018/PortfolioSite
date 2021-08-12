@@ -157,6 +157,10 @@ label, input, textarea {
   padding: 2%;
 }
 
+.window, input, textarea {
+  border-radius: 2vw;
+}
+
 input, textarea {
   background-color: #ffffff1d;
   border: 0;

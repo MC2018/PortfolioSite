@@ -172,6 +172,10 @@ label, input, textarea {
     padding: 2%;
 }
 
+.window, input, textarea {
+    border-radius: 2vw;
+}
+
 input, textarea {
     background-color: $tertiary-background-color;
     border: 0;

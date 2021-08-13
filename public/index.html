@@ -3,10 +3,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-            /*
-            There may be a programmatic way to change the href "#" positions when on desktop
-            */
-
             $(document).ready(function () {
                 loadSVGs();
                 createMathProblem();
@@ -140,9 +136,9 @@
         <header>
             <nav>
                 <ul>
-                    <li><a href="#">About Me</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#aboutme-d">About Me</a></li>
+                    <li><a href="#projects-d">Projects</a></li>
+                    <li><a href="#contact-d">Contact</a></li>
                 </ul>
             </nav>
         </header>
@@ -162,6 +158,7 @@
                 Fields of interest I would like to pursue include video games, websites, AI, and any other unique ideas that come to me.
             </h3>
         </section>
+        <div id="aboutme-d" class="desktop-href"></div>
         <section id="aboutme">
             <h1>
                 About Me
@@ -183,12 +180,14 @@
                 </p>
             </div>
         </section>
+        <div id="projects-d" class="desktop-href"></div>
         <section id="projects">
             <h1>
                 Projects
             </h1>
             <br>
-            <div id="games" class="window container">
+            <div class="window">
+            <div id="games" class="container">
                 <h2>
                     Games
                 </h2>
@@ -267,7 +266,7 @@
                     </p>
                 </div>
             </div>
-            <div id="encryption" class="window container">
+            <div id="encryption" class="container">
                 <h2>
                     Encryption
                 </h2>
@@ -308,7 +307,7 @@
                     </p>
                 </div>
             </div>
-            <div id="misc" class="window container">
+            <div id="misc" class="container">
                 <h2>
                     Misc.
                 </h2>
@@ -351,8 +350,8 @@
                         <a class="github svg-icon" href="https://github.com/MC2018/ShuffullOld"></a>
                     </h3>
                     <p>
-                        A pet peeve of mine has been the poor quality of music shufflers;
-                        Spotify playlists replays songs too quickly and YouTube playlists don't properly shuffle playlists over 100 videos.
+                        A pet peeve of mine has been the poor quality of music shuffler algorithms;
+                        Spotify replays songs too quickly and YouTube doesn't properly shuffle playlists over 100 videos.
                         This is the problem that I aspired to solve in May of 2017.
                         Using a GUI, this program allows you to manage replayability of individual playlists locally.
                         <br><br>
@@ -407,7 +406,9 @@
                     </p>
                 </div>
             </div>
+            </div>
         </section>
+        <div id="contact-d" class="desktop-href"></div>
         <section id="contact">
             <h1>
                 Contact
@@ -415,19 +416,13 @@
             <br>
             <form style="margin-left: auto; margin-right: auto;" onsubmit="sendEmail(); return false">
                 <input id="name" type="text" placeholder="Full name" required>
-                <br>
                 <input id="contactEmail" type="email" placeholder="Email address" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
-                <br>
                 <input id="subject" type="text" placeholder="Subject" required>
-                <br>
-                <textarea id="body" type="text" placeholder="Message" style="height: 10em" required></textarea>
-                <br>
+                <textarea id="body" type="text" placeholder="Message" required></textarea>
                 <input id="math" type="text" inputmode="numeric" placeholder="Subject" required>
-                <br>
                 <input id="randomHoney123Abc" type="text" placeholder="Fake input" class="oneyhay-otpay" autocomplete="nope">
                 <input id="submit" style="display: block;" type="submit" value="Submit">
             </form>
-            <br>
         </section>
         <footer>
             <nav>

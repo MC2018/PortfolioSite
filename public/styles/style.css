@@ -52,7 +52,9 @@ section#projects {
 .container div h3 {
   -webkit-transition: height 1s ease;
   transition: height 1s ease;
-  height: 0;
+  height: auto;
+  opacity: 1;
+  font-size: inherit;
 }
 
 .container div.selected {
@@ -306,7 +308,7 @@ footer nav li {
 }
 
 /* Desktop / Landscape Views */
-@media (orientation: landscape) and (min-width: 801px) {
+@media (orientation: landscape), (min-width: 801px) {
   .desktop-href {
     height: 7.5em;
   }
@@ -348,8 +350,11 @@ footer nav li {
   h3 {
     font-size: 2em;
   }
-  section#main {
-    min-height: 100%;
+  .window {
+    width: 50em;
+  }
+  section:not(:last-of-type) {
+    padding-bottom: 0em !important;
   }
   .window {
     font-size: 1.5em;
@@ -384,25 +389,25 @@ footer nav li {
   /* Resolution Scaling */
 }
 
-@media (orientation: landscape) and (min-width: 801px) and (max-width: 1399px) {
+@media (orientation: landscape) and (max-width: 1399px), (min-width: 801px) and (max-width: 1399px) {
   body {
     font-size: 12px;
   }
 }
 
-@media (orientation: landscape) and (min-width: 801px) and (min-width: 1400px) and (max-width: 2299px) {
+@media (orientation: landscape) and (min-width: 1400px) and (max-width: 2299px), (min-width: 801px) and (min-width: 1400px) and (max-width: 2299px) {
   body {
     font-size: 16px;
   }
 }
 
-@media (orientation: landscape) and (min-width: 801px) and (min-width: 2300px) and (max-width: 3199px) {
+@media (orientation: landscape) and (min-width: 2300px) and (max-width: 3199px), (min-width: 801px) and (min-width: 2300px) and (max-width: 3199px) {
   body {
     font-size: 24px;
   }
 }
 
-@media (orientation: landscape) and (min-width: 801px) and (min-width: 3200px) {
+@media (orientation: landscape) and (min-width: 3200px), (min-width: 801px) and (min-width: 3200px) {
   body {
     font-size: 32px;
   }

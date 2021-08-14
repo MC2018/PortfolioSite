@@ -65,7 +65,10 @@ section#projects {
 
         h3 {
             transition: height 1s ease;
-            height: 0;
+            //height: 0;
+            height: auto;
+            opacity: 1;
+            font-size: inherit;
         }
     }
 
@@ -309,10 +312,11 @@ footer {
 }
 
 /* Desktop / Landscape Views */
-@media (orientation: landscape) and (min-width: 801px) {
+@media (orientation: landscape), (min-width: 801px) {
     //section#main {
         //min-height: 1em - $header-desktop-height;
     //}
+
 
     .desktop-href {
         height: $header-desktop-height + 2.5em;
@@ -363,8 +367,12 @@ footer {
         font-size: 2em;
     }
 
-    section#main {
-        min-height: 100%;
+    .window {
+        width: 50em;
+    }
+
+    section:not(:last-of-type) {
+        padding-bottom: 0em !important;
     }
 
     .window {

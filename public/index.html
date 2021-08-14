@@ -2,62 +2,471 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="scripts/utils.js"></script>
         <script>
             $(document).ready(function () {
-                initialize();
+                loadSVGs();
+                createMathProblem();
             });
+
+            function loadSVGs(parent) {
+                const svgs = {
+                    github: "images/github.svg",
+                    linkedin: "images/linkedin.svg",
+                    download: "images/download.svg",
+                    aboutme: "images/aboutme.svg",
+                    projects: "images/projects.svg",
+                    contact: "images/contact.svg"
+                };
+
+                if (parent) {
+                    parent += " ";
+                } else {
+                    parent = "";
+                }
+
+                for (var key in svgs) {
+                    $(`${parent}.${key}`).load(svgs[key]);
+                }
+            }
+
+            function createMathProblem() {
+                let numbers = [Math.ceil(Math.random() * 5), Math.ceil(Math.random() * 5)];
+                document.getElementById("math").placeholder = `What is ${numbers[0]} + ${numbers[1]}?`;
+                mathAnswer = numbers[0] + numbers[1];
+            }
+
+            async function sendEmail() {
+                let honeypot = document.getElementsByClassName("oneyhay-otpay");
+                let math = document.getElementById("math");
+
+                for (var i = 0; i < honeypot.length; i++) {
+                    if (honeypot[i].value) {
+                        alert("You are being suspected of sending spam mail. If this is a mistake, please refresh the page and try again without using autofill.");
+                        return;
+                    }
+                }
+
+                if (math.value != mathAnswer) {
+                    alert("Please answer the math question correctly.");
+                    return;
+                }
+
+                let submitButton = document.getElementById("submit");
+                submitButton.setAttribute("value", "Submitting...");
+                submitButton.disabled = true;
+
+                let body = {
+                    name: document.getElementById("name").value,
+                    contactEmail: document.getElementById("contactEmail").value,
+                    subject: document.getElementById("subject").value,
+                    body: document.getElementById("body").value
+                };
+                    
+                let options = {
+                    method: "POST",
+                    body: JSON.stringify(body),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                };
+
+                try {
+                    let response = await fetch("/contact", options);
+                    let json = await response.json();
+
+                    if (json.status == "success") {
+                        submitButton.setAttribute("value", "Submitted");
+                        alert(json.body);
+                    } else {
+                        submitButton.setAttribute("value", "Submit");
+                        submitButton.disabled = false;
+                        alert(`There was a problem sending the email from the server's side:\n${json.body}\n\nPlease try again at a later time.`);
+                    }
+                } catch (err) {
+                    submitButton.setAttribute("value", "Submit");
+                    submitButton.disabled = false;
+                    alert("There was a problem connecting to the server, please try again at a later time if it continues to persist.");
+                }
+            }
+
+            function showHide(event) {
+                let id = event.target.id;
+                let details = id.split("Button");
+                let sectionName = details[0], index = details[1];
+                let sectionButtons = Array.from(document.querySelectorAll(`[id ^= "${sectionName}Button"]`));
+                let alreadySelected = event.target.classList.contains("selected");
+                let paragraph = document.getElementById(`${sectionName}Details${index}`);
+
+                sectionButtons.splice(sectionButtons.indexOf(event.target), 1);
+
+                // Prevents clicking on two around the same time
+                for (let i = 0; i < sectionButtons.length; i++) {
+                    if (sectionButtons[i].classList.contains("selected")) {
+                        return;
+                    }
+                }
+
+                if (alreadySelected) {
+                    event.target.classList.remove("selected");
+                    paragraph.classList.remove("delayed-transition");
+                    paragraph.classList.remove("selected");
+                } else {
+                    event.target.classList.add("selected");
+                    paragraph.classList.add("delayed-transition");
+                    paragraph.classList.add("selected");
+                }
+
+                for (let i = 0; i < sectionButtons.length; i++) {
+                    let element = sectionButtons[i];
+
+                    if (alreadySelected) {
+                        element.classList.add("delayed-transition");
+                        element.classList.remove("hidden");
+                    } else {
+                        element.classList.remove("delayed-transition");
+                        element.classList.add("hidden");
+                    }
+                }
+            }
         </script>
         <link rel="stylesheet" href="styles/style.css">
-        <style type="text/css">
-            .github, .linkedin {
-                width: 5em;
-            }
-
-            #summary {
-                width: 60%;
-            }
-
-            h1 {
-                padding-top: 7%;
-            }
-
-            a {
-                padding: 0.6em;
-            }
-
-            @media (max-aspect-ratio: 999/1000) and (max-width: 999px) {
-                a {
-                    padding: 1.5vw;
-                    font-size: 5vw;
-                }
-
-                .github, .linkedin {
-                    width: 3em;
-                }
-
-                #summary {
-                    width: 20em;
-                }
-
-                h1 {
-                    padding-top: 25%;
-                }
-            }
-        </style>
         <title>MC_2018</title>
+
+        <!-- HTML Meta Tags -->
+        <meta name="description" content="My personal portfolio site.">
+
+        <!-- Facebook Meta Tags -->
+        <meta property="og:url" content="https://private.url/">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="MC_2018">
+        <meta property="og:description" content="My personal portfolio site.">
+        <meta property="og:image" content="https://private.url/images/meta.png">
+
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta property="twitter:domain" content="private.url">
+        <meta property="twitter:url" content="https://private.url/">
+        <meta name="twitter:title" content="MC_2018">
+        <meta name="twitter:description" content="My personal portfolio site.">
+        <meta name="twitter:image" content="https://private.url/images/meta.png">
+
+        <!-- https://www.opengraph.xyz -->
     </head>
     <body>
-        <h1>MC_2018</h1>
-        <h2>Software Engineer</h2>
-        <br>
-        <ul class="horizontal-list" style="text-align: center;">
-            <li><a class="github svg-icon off-color" href="https://github.com/mc2018"></a></li>
-            <li><a class="linkedin svg-icon off-color" href="https://www.linkedin.com/"></a></li>
-        </ul>
-        <br><br><br><br><br><br><br><br>
-        <h2 id="summary" style="margin-left: auto; margin-right: auto">
-            My current career interests are those involving game development, artificial intelligence, and cybersecurity.
-        </h2>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="#aboutme-d">About Me</a></li>
+                    <li><a href="#projects-d">Projects</a></li>
+                    <li><a href="#contact-d">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section id="main">
+            <br>
+            <br>
+            <br>
+            <h1>MC_2018</h1>
+            <h2>Software Engineer</h2>
+            <br>
+            <ul class="horizontal-list" style="text-align: center;">
+                <li><a class="github svg-icon" href="https://github.com/mc2018"></a></li>
+                <li><a class="linkedin svg-icon" href="https://www.linkedin.com/"></a></li>
+            </ul>
+            <br><br><br>
+            <h3 id="summary" style="margin-left: auto; margin-right: auto; width: 90%">
+                Fields of interest I would like to pursue include video games, websites, AI, and any other unique ideas that come to me.
+            </h3>
+        </section>
+        <div id="aboutme-d" class="desktop-href"></div>
+        <section id="aboutme">
+            <h1>
+                About Me
+            </h1>
+            <br>
+            <div class="window">
+                <p>
+                    MC_2018 is a developer who's been programming for almost a decade.
+                    His gateway into coding started with Minecraft's esoteric command block language.
+                    With these skills, he developed unique features for a popular Vanilla server (a server with no external plugins).
+                    <br><br>
+                    From there, MC excelled with Java and Swift during his last two years of high school.
+                    During that time, he partipated in many hackathons, either winning or placing among the top.
+                    He also led a team for a nation-wide game development competition with the
+                    <a href="https://bpa.org/">Business Professionals of America</a>, where they placed 8th overall.
+                    <br><br>
+                    As of now, MC is a senior at the University of Toledo, majoring in Computer Science and Engineering and minoring in Mathematics.
+                    One of his key interests is game development, and his senior classes will be spent focusing on artificial intelligence and machine learning.
+                </p>
+            </div>
+        </section>
+        <div id="projects-d" class="desktop-href"></div>
+        <section id="projects">
+            <h1>
+                Projects
+            </h1>
+            <br>
+            <div class="window">
+            <div id="games" class="container">
+                <h2>
+                    Games
+                </h2>
+                <br>
+                <img id="gamesButton1" class="section" src="images/serratus.png" onclick="showHide(event)">
+                <img id="gamesButton2" class="section" src="images/caverunner.png" onclick="showHide(event)">
+                <img id="gamesButton3" class="section" src="images/tetrisrunner.png" onclick="showHide(event)">
+                <img id="gamesButton4" class="section" src="images/minecraft.png" onclick="showHide(event)">
+                <div id="gamesDetails1">
+                    <h3>
+                        Faithfall
+                        <label class="language-box">
+                            C#
+                        </label>
+                    </h3>
+                    <p>
+                        Faithfall (a working title) is a 2D platformer using the Unity engine.
+                        <br><br>
+                        The project started in June of 2020 and is in active development with associates of mine.
+                        My role as CTO has me working on most game mechanics and leading how the codebase should be structured.
+                        This project is very much a work-in-progress.
+                    </p>
+                </div>
+                <div id="gamesDetails2">
+                    <h3>
+                        Cave Runner
+                        <label class="language-box">
+                            Java
+                        </label>
+                    </h3>
+                    <p>
+                        In October of 2017, my friends and I entered a nation-wide 2D platformer game development challenge hosted by the
+                        <a href="https://bpa.org/">Business Professionals of America</a>.
+                        I led the team and handled development of the game's physics engine, display, and input.
+                        <br><br>
+                        In May of 2018, we travelled to Dallas for their national event where we showcased our game to a wide
+                        range of panelists, and placed 8th overall.
+                        While we could have put much more work into the game, I am proud of having developed a game engine for this project
+                        instead of choosing a pre-existing engine.
+                    </p>
+                </div>
+                <div id="gamesDetails3">
+                    <h3>
+                        Tetris Runner
+                        <label class="language-box">
+                            Java
+                        </label>
+                    </h3>
+                    <p>
+                        A recreation of Tetris seemed a bit lackluster for a 12-hour hackathon with a party of four,
+                        so instead in December of 2017, we developed a unique two-player versus-style version.
+                        <br><br>
+                        One player controlled the Tetris game, while the other controlled a physics-bound character, trying to
+                        dodge the tetronimos as they fell down. For this project, I worked on the input controls and physics engine of the game,
+                        and we ended up winning the competition with it.
+                    </p>
+                </div>
+                <div id="gamesDetails4">
+                    <h3>
+                        TheCloudMC Minecraft Server
+                        <label class="language-box">
+                            Minecraft Commands
+                        </label>
+                    </h3>
+                    <p>
+                        In 2014, a friend and I created our own Minecraft server; however, I wanted to make it "Vanilla".
+                        This means making a server with the original (unoptimized) JAR provided by the developers with no external plugins enabled.
+                        My challenge was to get a server as functioning as any other plugin-based server through the use of in-game commands and command blocks.
+                        <br><br>
+                        We accomplished all of this and more; I developed systems to set multiple homes, allow player teleport requests,
+                        enable spawn protection, moderate rule breakers, and much more.
+                        With these features in place, it became the most popular Vanilla server in the world.
+                        <br><br>
+                        A large challenge with this project was optimization.
+                        Command blocks can be fairly lag-inducive; this paired with Mojang's poor multiplayer optimizations made better program designing a must.
+                    </p>
+                </div>
+            </div>
+            <div id="encryption" class="container">
+                <h2>
+                    Encryption
+                </h2>
+                <br>
+                <img id="encryptionButton1" class="section" src="images/plainsight.png" onclick="showHide(event)">
+                <img id="encryptionButton2" class="section" src="images/imageencryption.png" onclick="showHide(event)">
+                <div id="encryptionDetails1">
+                    <h3>
+                        Plain Sight
+                        <label class="language-box">
+                            Java
+                        </label>
+                        <a class="github svg-icon" href="https://github.com/MC2018/PlainSight"></a>
+                        <a class="download svg-icon"></a>
+                    </h3>
+                    <p>
+                        For a local hackathon in Fall of 2017, I wanted to hide text inside of any image you gave it with password protection.
+                        Two friends of mine helped in development of this 24-hour challenge where we magnified the image size and stored bits of data from slight offsets in its RGB values.
+                        <br><br>
+                        We won the competition but we weren't proud of the outcome; a year later, we improved upon the original design and placed Top 10 at the 2018 HackOHI/O OSU hackathon.
+                        I was still unhappy with how slow the finished version was; the GitHub repo shows a complete redesign by me, focusing on optimizations, securities, and long-term scalability.
+                    </p>
+                </div>
+                <div id="encryptionDetails2">
+                    <h3>
+                        Image Encryption
+                        <label class="language-box">
+                            Java
+                        </label>
+                    </h3>
+                    <p>
+                        A predecessor to Plain Sight, I grew intrigued with encryption in July of 2017.
+                        This simpler idea would hide a message, locked with a password, in an image filled with noise.
+                        <br><br>
+                        One thing to improve upon for this project would be to randomize which pixels held your data;
+                        as-is, it saves the encrypted data like one would a book; all pixels after an extent are random nonsense.
+                        Spreading out the data based on the password would be a more secure approach moving forward.
+                    </p>
+                </div>
+            </div>
+            <div id="misc" class="container">
+                <h2>
+                    Misc.
+                </h2>
+                <br>
+                <img id="miscButton1" class="section" src="images/portfoliosite.png" onclick="showHide(event)">
+                <img id="miscButton2" class="section" src="images/shuffull.png" onclick="showHide(event)">
+                <img id="miscButton3" class="section" src="images/discordbotmanager.png" onclick="showHide(event)">
+                <img id="miscButton4" class="section" src="images/sudokugenerator.png" onclick="showHide(event)">
+                <div id="miscDetails1">
+                    <h3>
+                        Portfolio Site
+                        <label class="language-box">
+                            HTML
+                        </label>
+                        <label class="language-box">
+                            SCSS
+                        </label>
+                        <label class="language-box">
+                            Node
+                        </label>
+                        <a class="github svg-icon" href="https://github.com/MC2018/PortfolioSite"></a>
+                    </h3>
+                    <p>
+                        I started this project in Fall of 2020 to strengthen my resume.
+                        Additionally, I wanted better to get a better grasp of CSS's potential (since I would often use too much JavaScript for effects).
+                        <br><br>
+                        Along with achieving that, I also learned how to support mobile devices using different layouts.
+                        The backend utilizes Express for requests, Winston for logging, and Nodemailer for my contact page to forward emails.
+                    </p>
+                </div>
+                <div id="miscDetails2">
+                    <h3>
+                        Shuffull
+                        <label class="language-box">
+                            C#
+                        </label>
+                        <label class="language-box">
+                            Java
+                        </label>
+                        <a class="github svg-icon" href="https://github.com/MC2018/ShuffullOld"></a>
+                    </h3>
+                    <p>
+                        A pet peeve of mine has been the poor quality of music shuffler algorithms;
+                        Spotify replays songs too quickly and YouTube doesn't properly shuffle playlists over 100 videos.
+                        This is the problem that I aspired to solve in May of 2017.
+                        Using a GUI, this program allows you to manage replayability of individual playlists locally.
+                        <br><br>
+                        Over the years, I have re-designed this program, and currently have plans to create a server-based version.
+                        This will allow for accounts to sync playlist data between multiple devices.
+                    </p>
+                </div>
+                <div id="miscDetails3">
+                    <h3>
+                        Discord Bot Manager
+                        <label class="language-box">
+                            Java
+                        </label>
+                        <label class="language-box">
+                            JavaScript
+                        </label>
+                        <label class="language-box">
+                            Selenium/JSoup
+                        </label>
+                        <a class="github svg-icon" href="https://github.com/MC2018/BotManager"></a>
+                    </h3>
+                    <p>
+                        I started my creation of Discord bots in 2017 when I developed two different bots: one for a friend, and one for a YouTuber.
+                        These bots shared gambling commands, but had custom commands for each demographic (involving Pokemon, Clash Royale, and CS:GO).
+                        <br><br>
+                        As time progressed, and more bots were made, I started making the program simplified and expandable.
+                        This ended up being a more straightforward abstraction of the JDA library
+                        (which has helped my friend in developing <a href="https://github.com/Hyreon/Frostbalance">his own Discord project</a>).
+                        <br><br>
+                        My most popular bot is made to fetch speedrun data from
+                        <a href="https://www.speedrun.com/">Speedrun.com</a> for both leaderboards and individual runs;
+                        their API, however, isn't always optimal, so I additionally used Selenium and JSoup to scrape info from their site's HTML.
+                        My latest bot is a group project manager which I initially created for my own use in my ongoing projects.
+                        It manages task organization (similar to JIRA) for the Discord platform and provides GitHub PR notifications.
+                    </p>
+                </div>
+                <div id="miscDetails4">
+                    <h3>
+                        Sudoku Generator
+                        <label class="language-box">
+                            Java
+                        </label>
+                        <a class="github svg-icon" href="https://github.com/MC2018/SudokuGenerator"></a>
+                        <a class="download svg-icon"></a>
+                    </h3>
+                    <p>
+                        Puzzle games have always been interesting for me, so I wanted to learn how to generate sudoku puzzles.
+                        After jokingly trying to randomly brute-force sudoku points (to no avail), I created a wholly unique algorithm in 2018.
+                        <br><br>
+                        Along with normal sudokus, I also created an option to force-enable maps with diagonal matches.
+                        I was able to get the normal generation time down to ~10ms per map, and around 1-2 seconds per diagonal map.
+                    </p>
+                </div>
+            </div>
+            </div>
+        </section>
+        <div id="contact-d" class="desktop-href"></div>
+        <section id="contact">
+            <h1>
+                Contact
+            </h1>
+            <br>
+            <form style="margin-left: auto; margin-right: auto;" onsubmit="sendEmail(); return false">
+                <input id="name" type="text" placeholder="Full name" required>
+                <input id="contactEmail" type="email" placeholder="Email address" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+                <input id="subject" type="text" placeholder="Subject" required>
+                <textarea id="body" type="text" placeholder="Message" required></textarea>
+                <input id="math" type="text" inputmode="numeric" placeholder="Subject" required>
+                <input id="randomHoney123Abc" type="text" placeholder="Fake input" class="oneyhay-otpay" autocomplete="nope">
+                <input id="submit" style="display: block;" type="submit" value="Submit">
+            </form>
+        </section>
+        <footer>
+            <nav>
+                <ul class="horizontal-list mobile-only" style="text-align: center;">
+                    <li>
+                        <a href="#aboutme">
+                            <div class="aboutme svg-icon"></div>
+                            About Me
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#projects">
+                            <div class="projects svg-icon"></div>
+                            Projects
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact">
+                            <div class="contact svg-icon"></div>
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </footer>
     </body>
 </html>

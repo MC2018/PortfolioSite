@@ -1,36 +1,117 @@
-$primary-text-color: #e1e5ee;
+$primary-text-color: #E8F1F2;
 $secondary-text-color: #757575;
 $hover-color: #5d606e;
 
-$primary-background-color: #767b91;
-$secondary-background-color: #2a324b;
-$tertiary-background-color: #e1e5ee;
+$primary-background-color: #1d1d1d;
+$secondary-background-color: #C91D3C;
+$tertiary-background-color: #ffffff1d;
 
-$footer-padding: 2.5em;
+$footer-mobile-height: 10vh;
+$footer-desktop-height: 2em;
+
+$header-mobile-height: 3vh;
+$header-desktop-height: 5em;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    color: $primary-background-color;
-}
+    color: $primary-text-color;
 
-html {
+    font-family: 'Roboto Mono', monospace;
+    -webkit-overflow-scrolling: scroll;
+    scroll-behavior: smooth;
+
     /* Disable scrollbar */
     scrollbar-width: none;
+}
+
+section#main {
+    min-height: 100vh - $header-mobile-height - $footer-mobile-height;
+}
+
+section#aboutme {
+    //min-height: 120vh;
+    padding-bottom: 12vh;
+}
+
+section#projects {
+    //min-height: 100vh;
+    padding-bottom: 12vh;
+}
+
+.container {
+    transition: height 0.5s ease-out;
+
+    img {
+        transition: height .7s ease-out, width .3s ease;
+        width: 40vw;
+        height: 40vw;
+        margin-bottom: 1.8vw;
+    }
+
+    img.hidden {
+        width: 0;
+        height: 0;
+    }
+
+    div {
+        transition: font-size 0.6s ease-out, opacity 0.6s ease;
+        font-size: 0;
+        opacity: 0;
+        //height: 0;
+
+        h3 {
+            transition: height 1s ease;
+            //height: 0;
+            height: auto;
+            opacity: 1;
+            font-size: inherit;
+        }
+    }
+
+    div.selected {
+        //animation: fadeIn 1s;
+        //transition-delay: 0s;
+        height: auto;
+        opacity: 1;
+        font-size: inherit;
+
+        h3 {
+            height: inherit;
+        }
+    }
+
+    .delayed-transition {
+        transition-delay: 0.3s;
+    }
+
+    .svg-icon {
+        display: inline-block;
+        width: 5.5vw;
+        transform: translateY(25%);
+    }
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 body {
     /* Footer working on bottom */
     min-height: 100vh;
-    padding-bottom: $footer-padding;
-
-    background-color: $primary-background-color;
+    padding-bottom: $footer-mobile-height;
+    background: rgb(56, 53, 53);
+    background-image: url("../images/background.jpg");
+    //background-color: $primary-background-color;
     position: relative;
 }
 
 h1, h2, h3, h4, h5, h6, nav a {
     color: $primary-text-color;
+    text-align: center;
 }
 
 .info-box h3 {
@@ -38,31 +119,25 @@ h1, h2, h3, h4, h5, h6, nav a {
 }
 
 nav li, nav a, textarea, p {
-    font-family: "Roboto", serif;
-    font-weight: 400;
-    font-size: 1.3em;
     text-decoration: none;
-    padding: 0.15em;
 }
 
 h1 {
-    text-align: center;
-    padding-top: 0.7em;
-    font-size: 5em;
+    font-size: 12vw;
+    padding-bottom: 2vh;
 }
 
 h2 {
-    text-align: center;
-    font-size: 2.5em;
+    font-size: 7.5vw;
 }
 
-label, input, textarea {
-    font-size: 1.5em;
+h3 {
+    font-size: 4.5vw;
 }
 
 .language-box {
-    background-color: $primary-background-color;
-    color: $tertiary-background-color;
+    background-color: $primary-text-color;
+    color: $primary-background-color;
     font-size: 0.75em;
     padding: 0.1em;
     display: inline-block;
@@ -71,6 +146,7 @@ label, input, textarea {
     text-align: center;
 }
 
+/* TODO: Do I still use this? */
 .info-box {
     background-color: $tertiary-background-color;
     padding: 1.5em;
@@ -81,9 +157,56 @@ label, input, textarea {
     border-radius: 1.5em;
 }
 
+.window {
+    background-color: #ffffff1d;
+    width: 90%;
+    margin: auto;
+    align-items: center;
+    text-align: center;
+    padding: 2%;
+
+     h2 {
+         margin: 1.4vh auto auto auto;
+     }
+}
+
+.window, input, textarea {
+    border-radius: 2vw;
+}
+
 input, textarea {
     background-color: $tertiary-background-color;
     border: 0;
+    padding: 2vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 4vw;
+    width: 95%;
+    margin-bottom: 2.2vh;
+}
+
+textarea {
+    height: 27vh;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    background-color:#ffffff1d;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* To set up the honeypot */
+.oneyhay-otpay {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0;
+    width: 0;
+    z-index: -1;
 }
 
 /* Changes Chrome's autofill color */
@@ -92,16 +215,42 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     -webkit-text-fill-color: $primary-background-color !important;
 }
 
+/* TODO: See if these two are still being used */
+header .test {
+    display: none;
+}
+
+html:not([data-scroll="0"]) {
+    header .test {
+        display: flex;
+    }
+}
+
 header {
-    top: 0vw;
+    top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1em;
-    height: 6em;
-    position: sticky;
     background-color: $secondary-background-color;
     z-index: 1000;
+    height: $header-mobile-height;
+
+    nav {
+        //transition: all 0.2s linear;
+        text-align: center;
+        margin: auto;
+        clear: both;
+        justify-content: center;
+        display: none;
+
+        ul {
+            z-index: 1;
+
+            li {
+                padding: 0em 1em;
+            }
+        }
+    }
 }
 
 nav li, .horizontal-list li {
@@ -116,29 +265,22 @@ nav a:hover {
     color: $hover-color;
 }
 
-.nav-button {
-    visibility: hidden;
-    font-size: 5vh;
-}
-
 .svg-icon {
+    margin: auto;
     background-repeat: no-repeat;
     display: block;
     transition: fill 0.3s ease 0.05s;
-    fill: $primary-background-color;
-}
-
-.svg-icon.off-color {
     fill: $primary-text-color;
+    width: 6vh;
 }
 
 input[type=submit] {
     transition: color 0.3s ease 0.05s;
 }
 
-.svg-icon:hover, input[type=submit]:hover {
-    fill: $hover-color;
-    color: $hover-color;
+.svg-icon:hover, input[type=submit]:hover, a, a:visited, a:hover, a:active {
+    fill: $primary-text-color;
+    color: $primary-text-color;
     cursor: pointer;
 }
 
@@ -149,94 +291,131 @@ input[type=submit]:disabled {
 footer {
     /* Footer working on bottom */
     background-color: $secondary-background-color;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100vw;
-    font-size: $footer-padding - 1;
+    height: $footer-mobile-height;
+    
+    nav li {
+        font-size: 1.75vh;
+        margin: 0 3vw;
+        padding-top: 0.9vh;
+        width: 20vw;
+    }
 }
 
-body::-webkit-scrollbar {
-    display: none;
+.desktop-href {
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
 }
 
-.mobile-only {
-    display: none;
-}
+/* Desktop / Landscape Views */
+@media (orientation: landscape), (min-width: 801px) {
+    //section#main {
+        //min-height: 1em - $header-desktop-height;
+    //}
 
-@media (max-aspect-ratio: 999/1000) and (max-width: 999px) {
+
+    .desktop-href {
+        height: $header-desktop-height + 2.5em;
+    }
+
+    br {
+        margin: 0;
+        line-height: 2em;
+    }
+
     header {
-        padding: 0.5vw 0.5vw;
-        height: 10vh;
-
-        .background-shading {
-            background-color: $secondary-background-color;
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 10vh;
-            left: 0px;
-        }
+        padding: 1em;
+        height: $header-desktop-height;
+        position: sticky;
 
         nav {
-            visibility: hidden;
-            opacity: 0;
-            transition: all 0.2s linear;
-            text-align: center;
-            margin: auto;
-            clear: both;
-            padding-top: 10vh;
-            justify-content: center;
             display: flex;
-
-            ul {
-                z-index: 1;
-            }
-
-            li {
-                display: block;
-                padding-top: 2vh;
-            }
-
-            a {
-                font-size: 10vw;
-            }
+            padding-top: 0em;
+            padding-bottom: 0em;
+            font-size: 2em;
         }
+    }
+
+    footer {
+        position: absolute;
+        height: $footer-desktop-height;
+        //bottom: 0;
     }
 
     body {
         /* Footer working on bottom */
-        min-height: 100vh;
-        padding-bottom: $footer-padding;
+        padding-bottom: $footer-desktop-height;
+    }
+
+    .svg-icon {
+        width: 3.8em;
     }
 
     h1 {
-        font-size: 12vw;
+        font-size: 5em;
     }
 
     h2 {
-        font-size: 5vw;
+        font-size: 2.5em;
     }
 
-    .nav-button {
-        visibility: visible;
-        padding-left: 3vw;
-        border: none;
-        background-color: inherit;
-        cursor: pointer;
-        margin-right: auto;
+    h3 {
+        font-size: 2em;
     }
 
-    header nav.visible {
-        visibility: visible;
-        opacity: 1;
+    .window {
+        width: 50em;
+    }
+
+    section:not(:last-of-type) {
+        padding-bottom: 0em !important;
+    }
+
+    .window {
+        font-size: 1.5em;
+    }
+
+    /*
+    Note for .container
+    In desktop mode, to have content move to side:
+    add display: inline-block to img and div, and set a max-width so that it doesn't expand larger than (the container size - the image)
+    */
+
+    .container {
+        img {
+            width: 5em;
+            height: 5em;
+        }
+
+        .svg-icon {
+            width: 1.2em;
+        }
+
+        h3 {
+            font-size: 1em;
+        }
     }
 
     .mobile-only {
-        display: block;
+        display: none;
     }
-}
 
-@media (min-aspect-ratio: 1/1), (min-width: 1000px) {
+    input, textarea {
+        width: 40em;
+        padding: 0.5em;
+        font-size: 1.2em;
+        margin-bottom: 0.8em;
+    }
+    
+    .window, input, textarea {
+        border-radius: 0.5em;
+    }
+
+    /* Resolution Scaling */
     @media (max-width: 1399px) {
         body {
             font-size: 12px;
@@ -248,13 +427,13 @@ body::-webkit-scrollbar {
             font-size: 16px;
         }
     }
-    
+
     @media (min-width: 2300px) and (max-width: 3199px) {
         body {
             font-size: 24px;
         }
     }
-    
+
     @media (min-width: 3200px) {
         body {
             font-size: 32px;

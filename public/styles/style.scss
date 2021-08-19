@@ -32,13 +32,7 @@ section#main {
     min-height: 100vh - $header-mobile-height - $footer-mobile-height;
 }
 
-section#aboutme {
-    //min-height: 120vh;
-    padding-bottom: 12vh;
-}
-
-section#projects {
-    //min-height: 100vh;
+section#aboutme, section#projects {
     padding-bottom: 12vh;
 }
 
@@ -46,35 +40,41 @@ section#projects {
     transition: height 0.5s ease-out;
 
     img {
-        transition: height .7s ease-out, width .3s ease;
+        transition: height .6s ease-out, width .6s ease;
         width: 40vw;
         height: 40vw;
         margin-bottom: 1.8vw;
+        vertical-align: top;
+    }
+
+    img:nth-child(-n+4) {
+        vertical-align: bottom;
+    }
+
+    img.selected {
+        width: 45vw;
+        height: 45vw;
     }
 
     img.hidden {
-        width: 0;
-        height: 0;
+        width: 20vw;
+        height: 20vw;
     }
 
     div {
         transition: font-size 0.6s ease-out, opacity 0.6s ease;
         font-size: 0;
         opacity: 0;
-        //height: 0;
 
         h3 {
             transition: height 1s ease;
-            //height: 0;
-            height: auto;
+            height: 0;
             opacity: 1;
             font-size: inherit;
         }
     }
 
     div.selected {
-        //animation: fadeIn 1s;
-        //transition-delay: 0s;
         height: auto;
         opacity: 1;
         font-size: inherit;
@@ -389,8 +389,19 @@ footer {
         img {
             width: 5em;
             height: 5em;
+            vertical-align: bottom;
         }
 
+        img.selected {
+            width: 7em;
+            height: 7em;
+        }
+        
+        img.hidden {
+            width: 3em;
+            height: 3em;
+        }
+        
         .svg-icon {
             width: 1.2em;
         }

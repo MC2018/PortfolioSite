@@ -16,11 +16,7 @@ section#main {
   min-height: 87vh;
 }
 
-section#aboutme {
-  padding-bottom: 12vh;
-}
-
-section#projects {
+section#aboutme, section#projects {
   padding-bottom: 12vh;
 }
 
@@ -30,16 +26,26 @@ section#projects {
 }
 
 .container img {
-  -webkit-transition: height .7s ease-out, width .3s ease;
-  transition: height .7s ease-out, width .3s ease;
+  -webkit-transition: height .6s ease-out, width .6s ease;
+  transition: height .6s ease-out, width .6s ease;
   width: 40vw;
   height: 40vw;
   margin-bottom: 1.8vw;
+  vertical-align: top;
+}
+
+.container img:nth-child(-n+4) {
+  vertical-align: bottom;
+}
+
+.container img.selected {
+  width: 45vw;
+  height: 45vw;
 }
 
 .container img.hidden {
-  width: 0;
-  height: 0;
+  width: 20vw;
+  height: 20vw;
 }
 
 .container div {
@@ -52,7 +58,7 @@ section#projects {
 .container div h3 {
   -webkit-transition: height 1s ease;
   transition: height 1s ease;
-  height: auto;
+  height: 0;
   opacity: 1;
   font-size: inherit;
 }
@@ -367,6 +373,15 @@ footer nav li {
   .container img {
     width: 5em;
     height: 5em;
+    vertical-align: bottom;
+  }
+  .container img.selected {
+    width: 7em;
+    height: 7em;
+  }
+  .container img.hidden {
+    width: 3em;
+    height: 3em;
   }
   .container .svg-icon {
     width: 1.2em;

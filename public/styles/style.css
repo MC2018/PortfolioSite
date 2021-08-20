@@ -25,6 +25,10 @@ section#aboutme, section#projects {
   transition: height 0.5s ease-out;
 }
 
+.container h2 {
+  padding-bottom: 2.5vh;
+}
+
 .container img {
   -webkit-transition: height .6s ease-out, width .6s ease;
   transition: height .6s ease-out, width .6s ease;
@@ -178,7 +182,7 @@ input, textarea {
 }
 
 textarea {
-  height: 27vh;
+  height: 30vh;
 }
 
 input:-webkit-autofill,
@@ -357,27 +361,28 @@ footer nav li {
     font-size: 2em;
   }
   .window {
-    width: 50em;
+    width: 43.5em;
+    font-size: 1.5em;
   }
   section:not(:last-of-type) {
     padding-bottom: 0em !important;
-  }
-  .window {
-    font-size: 1.5em;
   }
   /*
     Note for .container
     In desktop mode, to have content move to side:
     add display: inline-block to img and div, and set a max-width so that it doesn't expand larger than (the container size - the image)
     */
+  .container h2 {
+    padding-bottom: 0.3em;
+  }
   .container img {
     width: 5em;
     height: 5em;
     vertical-align: bottom;
   }
   .container img.selected {
-    width: 7em;
-    height: 7em;
+    width: 5.5em;
+    height: 5.5em;
   }
   .container img.hidden {
     width: 3em;
@@ -401,18 +406,30 @@ footer nav li {
   .window, input, textarea {
     border-radius: 0.5em;
   }
+  textarea {
+    height: 12em;
+  }
   /* Resolution Scaling */
 }
 
-@media (orientation: landscape) and (max-width: 1399px), (min-width: 801px) and (max-width: 1399px) {
+@media (orientation: landscape) and (max-width: 999px), (min-width: 801px) and (max-width: 999px) {
   body {
     font-size: 12px;
+  }
+  #main {
+    padding-top: 3em;
+  }
+}
+
+@media (orientation: landscape) and (min-width: 1000px) and (max-width: 1399px), (min-width: 801px) and (min-width: 1000px) and (max-width: 1399px) {
+  body {
+    font-size: 14px;
   }
 }
 
 @media (orientation: landscape) and (min-width: 1400px) and (max-width: 2299px), (min-width: 801px) and (min-width: 1400px) and (max-width: 2299px) {
   body {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 

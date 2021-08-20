@@ -39,6 +39,10 @@ section#aboutme, section#projects {
 .container {
     transition: height 0.5s ease-out;
 
+    h2 {
+        padding-bottom: 2.5vh;
+    }
+
     img {
         transition: height .6s ease-out, width .6s ease;
         width: 40vw;
@@ -187,7 +191,7 @@ input, textarea {
 }
 
 textarea {
-    height: 27vh;
+    height: 30vh;
 }
 
 input:-webkit-autofill,
@@ -368,15 +372,12 @@ footer {
     }
 
     .window {
-        width: 50em;
+        width: 43.5em;
+        font-size: 1.5em;
     }
 
     section:not(:last-of-type) {
         padding-bottom: 0em !important;
-    }
-
-    .window {
-        font-size: 1.5em;
     }
 
     /*
@@ -386,6 +387,10 @@ footer {
     */
 
     .container {
+        h2 {
+            padding-bottom: 0.3em;
+        }
+
         img {
             width: 5em;
             height: 5em;
@@ -393,8 +398,8 @@ footer {
         }
 
         img.selected {
-            width: 7em;
-            height: 7em;
+            width: 5.5em;
+            height: 5.5em;
         }
         
         img.hidden {
@@ -426,16 +431,30 @@ footer {
         border-radius: 0.5em;
     }
 
+    textarea {
+        height: 12em;
+    }
+
     /* Resolution Scaling */
-    @media (max-width: 1399px) {
+    @media (max-width: 999px) {
         body {
             font-size: 12px;
+        }
+
+        #main {
+            padding-top: 3em;
+        }
+    }
+
+    @media (min-width: 1000px) and (max-width: 1399px) {
+        body {
+            font-size: 14px;
         }
     }
 
     @media (min-width: 1400px) and (max-width: 2299px) {
         body {
-            font-size: 16px;
+            font-size: 18px;
         }
     }
 

@@ -8,9 +8,7 @@
             $(document).ready(function () {
                 loadSVGs();
                 createMathProblem();
-                //setInterval(function() {
-                    loadInfoFromCache();
-                //}, 5000);
+                loadInfoFromCache();
             });
 
             function loadInfoFromCache() {
@@ -82,17 +80,16 @@
             }
 
             async function sendEmail() {
-                let honeypot = document.getElementsByClassName("oneyhay-otpay");
+                let honeypot = document.getElementById("randomHoney123Abc");
                 let math = document.getElementById("math");
+                let mathAnswer = math.value.normalize("NFKD");
 
-                for (var i = 0; i < honeypot.length; i++) {
-                    if (honeypot[i].value) {
-                        alert("You are being suspected of sending spam mail. If this is a mistake, please refresh the page and try again without using autofill.");
-                        return;
-                    }
+                if (honeypot.value) {
+                    alert("You are being suspected of sending spam mail. If this is a mistake, please refresh the page and try again without using autofill.");
+                    return;
                 }
 
-                if (math.value != mathAnswer) {
+                if (mathAnswer != mathAnswer) {
                     alert("Please answer the math question correctly.");
                     return;
                 }
@@ -261,7 +258,6 @@
                     <h2>
                         Games
                     </h2>
-                    <br>
                     <img id="gamesButton1" class="section" src="images/serratus.png" onclick="showHide(event)">
                     <img id="gamesButton2" class="section" src="images/caverunner.png" onclick="showHide(event)">
                     <br class="mobile-only">
@@ -341,7 +337,6 @@
                     <h2>
                         Encryption
                     </h2>
-                    <br>
                     <img id="encryptionButton1" class="section" src="images/plainsight.png" onclick="showHide(event)">
                     <img id="encryptionButton2" class="section" src="images/imageencryption.png" onclick="showHide(event)">
                     <div id="encryptionDetails1">
@@ -382,7 +377,6 @@
                     <h2>
                         Misc.
                     </h2>
-                    <br>
                     <img id="miscButton1" class="section" src="images/portfoliosite.png" onclick="showHide(event)">
                     <img id="miscButton2" class="section" src="images/shuffull.png" onclick="showHide(event)">
                     <br class="mobile-only">

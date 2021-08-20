@@ -207,8 +207,8 @@ input:-webkit-autofill:active {
 
 /* Changes Chrome's autofill color */
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px #ffffff1d inset !important;
-  -webkit-text-fill-color: #1d1d1d !important;
+  -webkit-box-shadow: 0 0 0 30px #0000 inset !important;
+  -webkit-text-fill-color: #E8F1F2 !important;
 }
 
 /* TODO: See if these two are still being used */
@@ -407,7 +407,7 @@ footer nav li {
     border-radius: 0.5em;
   }
   textarea {
-    height: 12em;
+    height: 11.5em;
   }
   /* Resolution Scaling */
 }

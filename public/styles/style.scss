@@ -215,8 +215,8 @@ input:-webkit-autofill:active {
 
 /* Changes Chrome's autofill color */
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px $tertiary-background-color inset !important;
-    -webkit-text-fill-color: $primary-background-color !important;
+    -webkit-box-shadow: 0 0 0 30px #0000 inset !important;
+    -webkit-text-fill-color: $primary-text-color !important;
 }
 
 /* TODO: See if these two are still being used */
@@ -432,7 +432,7 @@ footer {
     }
 
     textarea {
-        height: 12em;
+        height: 11.5em;
     }
 
     /* Resolution Scaling */

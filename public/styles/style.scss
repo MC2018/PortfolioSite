@@ -12,7 +12,11 @@ $footer-desktop-height: 2em;
 $header-mobile-height: 3vh;
 $header-desktop-height: 5em;
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+/*
+Settings across all parts of site
+*/
 
 * {
     box-sizing: border-box;
@@ -20,7 +24,7 @@ $header-desktop-height: 5em;
     padding: 0;
     color: $primary-text-color;
 
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Open Sans', sans-serif;
     -webkit-overflow-scrolling: scroll;
     scroll-behavior: smooth;
 
@@ -28,6 +32,9 @@ $header-desktop-height: 5em;
     scrollbar-width: none;
 }
 
+/*
+Main
+*/
 section#main {
     min-height: 100vh - $header-mobile-height - $footer-mobile-height;
 }
@@ -143,7 +150,7 @@ h3 {
     background-color: $primary-text-color;
     color: $primary-background-color;
     font-size: 0.75em;
-    padding: 0.1em;
+    padding: 0.1em 0.5em;
     display: inline-block;
     border-radius: 1em;
     min-width: 2em;
@@ -215,7 +222,7 @@ input:-webkit-autofill:active {
 
 /* Changes Chrome's autofill color */
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px #0000 inset !important;
+    box-shadow: 0 0 0 0 #0000 inset !important;
     -webkit-text-fill-color: $primary-text-color !important;
 }
 

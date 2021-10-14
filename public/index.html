@@ -16,7 +16,7 @@
                 
                 try {
                     body = JSON.parse(localStorage["body"]);
-                } catch {
+                } catch (err) {
                     return;
                 }
 
@@ -150,7 +150,7 @@
                             let previousIndex = sectionButtons[i].id.split("Button")[1];
                             let oldParagraph = document.getElementById(`${sectionName}Details${previousIndex}`);
                             oldParagraph.classList.remove("selected");
-                        } catch {};
+                        } catch (err) {};
                     }
                 }
 

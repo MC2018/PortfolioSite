@@ -4,6 +4,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
             let stopSavingToCache = false;
+            let mathAnswer;
 
             $(document).ready(function () {
                 loadSVGs();
@@ -82,14 +83,14 @@
             async function sendEmail() {
                 let honeypot = document.getElementById("randomHoney123Abc");
                 let math = document.getElementById("math");
-                let mathAnswer = math.value.normalize("NFKD");
+                let guess = math.value.normalize("NFKD");
 
                 if (honeypot.value) {
                     alert("You are being suspected of sending spam mail. If this is a mistake, please refresh the page and try again without using autofill.");
                     return;
                 }
 
-                if (mathAnswer != mathAnswer) {
+                if (mathAnswer != guess) {
                     alert("Please answer the math question correctly.");
                     return;
                 }
@@ -219,7 +220,9 @@
             </ul>
             <br><br><br>
             <h3 id="summary" style="margin-left: auto; margin-right: auto; width: 90%">
-                Fields of interest I would like to pursue include video games, websites, AI, and any other unique opportunities that come to me.
+                Fields of interest I would like to pursue include video games, websites, AI,
+                <br>
+                and any other unique opportunities that come to me.
             </h3>
         </section>
         <div id="aboutme-d" class="desktop-href"></div>
@@ -260,9 +263,10 @@
                     </h2>
                     <img id="gamesButton1" class="section" src="images/serratus.png" onclick="showHide(event)">
                     <img id="gamesButton2" class="section" src="images/caverunner.png" onclick="showHide(event)">
+                    <img id="gamesButton3" class="section" src="images/caverunner.png" onclick="showHide(event)">
                     <br class="mobile-only">
-                    <img id="gamesButton3" class="section" src="images/tetrisrunner.png" onclick="showHide(event)">
-                    <img id="gamesButton4" class="section" src="images/minecraft.png" onclick="showHide(event)">
+                    <img id="gamesButton4" class="section" src="images/tetrisrunner.png" onclick="showHide(event)">
+                    <img id="gamesButton5" class="section" src="images/minecraft.png" onclick="showHide(event)">
                     <div id="gamesDetails1">
                         <h3>
                             Faithfall
@@ -298,6 +302,23 @@
                     </div>
                     <div id="gamesDetails3">
                         <h3>
+                            Ascent
+                            <label class="language-box">
+                                C#
+                            </label>
+                        </h3>
+                        <p>
+                            For the Ludwig Game Jam in October of 2021, developers were required to make a "Foddian" game, imitating the game style of
+                            <a href="">Bennett Foddy's Getting Over It.</a>
+                            My friend and I worked on 
+                            <br><br>
+                            Though we could only spend 5 of the 10 days given to work on the project,
+                            the resulting game ended up being fairly popular among the other participants who tried it.
+                            
+                        </p>
+                    </div>
+                    <div id="gamesDetails4">
+                        <h3>
                             Tetris Runner
                             <label class="language-box">
                                 Java
@@ -312,7 +333,7 @@
                             and we ended up winning the competition with it.
                         </p>
                     </div>
-                    <div id="gamesDetails4">
+                    <div id="gamesDetails5">
                         <h3>
                             TheCloudMC Minecraft Server
                             <label class="language-box">
@@ -401,7 +422,7 @@
                         Additionally, I wanted better to get a better grasp of CSS's potential (since I would often use too much JavaScript for effects).
                         <br><br>
                         Along with achieving that, I also learned how to support mobile devices using different layouts.
-                        The backend utilizes Express for requests, Winston for logging, and Nodemailer for my contact page to forward emails.
+                        The backend utilizes Express for requests, Winston for logging, and Nodemailer for my contact area to forward emails.
                     </p>
                     </div>
                     <div id="miscDetails2">
@@ -417,7 +438,7 @@
                         </h3>
                         <p>
                             A pet peeve of mine has been the poor quality of music shuffler algorithms;
-                            Spotify replays songs too quickly and YouTube doesn't properly shuffle playlists over 100 videos.
+                            Spotify replays songs too often for my taste and YouTube doesn't properly shuffle playlists over 100 videos.
                             This is the problem that I aspired to solve in May of 2017.
                             Using a GUI, this program allows you to manage replayability of individual playlists locally.
                             <br><br>
